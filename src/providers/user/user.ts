@@ -26,6 +26,7 @@ import { Api } from '../api/api';
 @Injectable()
 export class User {
   _user: any;
+  public thing: any;
 
   constructor(public api: Api) { }
 
@@ -34,11 +35,11 @@ export class User {
    * the user entered on the form.
    */
   login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
+    let seq = this.api.authPost('login', accountInfo).share();
 
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
+      if (res.status == 'true') {
         this._loggedIn(res);
       } else {
       }
@@ -54,15 +55,28 @@ export class User {
    * the user entered on the form.
    */
   signup(accountInfo: any) {
-    let seq = this.api.post('signup', accountInfo).share();
+    // let seq = this.api.post('signup', accountInfo).share();
+
+    // seq.subscribe((res: any) => {
+    //   // If the API returned a successful response, mark the user as logged in
+    //   if (res.status == 'success') {
+    //     this._loggedIn(res);
+    //   }
+    // }, err => {
+    //   console.error('ERROR', err);
+    // });
+
+    let myHeader = new Headers();
+    myHeader.append('Content-Type', 'application/json');
+
+    let seq = this.api.authPost('register', accountInfo, { headers: myHeader }).share();
 
     seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      }
+      this.thing = res
     }, err => {
-      console.error('ERROR', err);
+      console.log(err)
+    }, () => {
+      console.log('Request Complete')
     });
 
     return seq;

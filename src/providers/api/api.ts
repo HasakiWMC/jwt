@@ -1,14 +1,17 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { Http, RequestOptions } from '@angular/http';
 
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
 @Injectable()
 export class Api {
-  url: string = 'https://example.com/api/v1';
+  // url: string = 'http://localhost:5000';
+  url: string = 'http://47.94.223.220';
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public authHttp: AuthHttp) {
   }
 
   get(endpoint: string, params?: any, reqOpts?: any) {
@@ -43,5 +46,9 @@ export class Api {
 
   patch(endpoint: string, body: any, reqOpts?: any) {
     return this.http.put(this.url + '/' + endpoint, body, reqOpts);
+  }
+
+  authPost(endpoint: string, body: any, reqOpts?: any) {
+    return this.authHttp.post(this.url + '/' + endpoint, body, reqOpts);
   }
 }

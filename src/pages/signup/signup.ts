@@ -4,6 +4,7 @@ import { IonicPage, NavController, ToastController } from 'ionic-angular';
 
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
+import { WelcomePage } from '../welcome/welcome';
 
 @IonicPage()
 @Component({
@@ -14,8 +15,8 @@ export class SignupPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { name: string, email: string, password: string } = {
-    name: 'Test Human',
+  account: { username: string, email: string, password: string } = {
+    username: 'Test Human',
     email: 'test@example.com',
     password: 'test'
   };
@@ -36,10 +37,38 @@ export class SignupPage {
   doSignup() {
     // Attempt to login in through our User service
     this.user.signup(this.account).subscribe((resp) => {
-      this.navCtrl.push(MainPage);
-    }, (err) => {
+      if (resp) {
+        // var res = resp.json();
+        // var msg = res['_data']['msg']
+        // var status = res['_data']['status']
+        // console.log(status);
 
-      this.navCtrl.push(MainPage);
+        var res = resp.json();
+        var msg = res['msg']
+        var status = res['status']
+        console.log(status);
+      }
+      if (status == true) {
+        this.navCtrl.push(MainPage);
+
+        let toast = this.toastCtrl.create({
+          message: msg,
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
+      } else {
+        this.navCtrl.push(WelcomePage);
+
+        let toast = this.toastCtrl.create({
+          message: msg,
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
+      }
+    }, (err) => {
+      this.navCtrl.push(WelcomePage);
 
       // Unable to sign up
       let toast = this.toastCtrl.create({
