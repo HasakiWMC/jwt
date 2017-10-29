@@ -49,7 +49,7 @@ export class SignupPage {
         console.log(status);
       }
       if (status == true) {
-        this.navCtrl.push(MainPage);
+        this.navCtrl.push(WelcomePage);
 
         let toast = this.toastCtrl.create({
           message: msg,

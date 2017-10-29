@@ -41,8 +41,9 @@ export class LoginPage {
   // Attempt to login in through our User service
   doLogin() {
     this.user.login(this.account).subscribe((resp) => {
-      if (resp['access_token']) {
-        localStorage.setItem('token', resp['access_token'])
+      var res = resp.json();
+      if (res['access_token']) {
+        localStorage.setItem('token', res['access_token'])
       }
       let toast = this.toastCtrl.create({
         message: this.loginSuccessString,
