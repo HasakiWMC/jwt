@@ -15,8 +15,8 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 
-import { AuthHttp,AuthModule, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
-import { HttpModule,Http,Headers } from '@angular/http';
+import { AuthHttp, AuthModule, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
+import { HttpModule, Http, Headers } from '@angular/http';
 
 
 // The translate loader needs to know where to load i18n files
@@ -63,7 +63,7 @@ export function provideSettings(storage: Storage) {
   entryComponents: [
     MyApp
   ],
-  providers: [  
+  providers: [
     Api,
     Items,
     User,
@@ -79,7 +79,7 @@ export function provideSettings(storage: Storage) {
       globalHeaders: [{ 'Content-Type': 'application/json' }],
       noJwtError: true
     }),
-    { provide: Settings, useFactory: provideSettings, deps: [Http,Storage] },
+    { provide: Settings, useFactory: provideSettings, deps: [Http, Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
