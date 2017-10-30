@@ -18,10 +18,11 @@ export class Items {
       {
         "name": "有盗报警",
         "profilePic": "assets/img/speakers/bear.jpg",
-        "about": "Burt is a Bear."
+        "about": "Burt is a Bear.",
+        "note": "note"
       },
       {
-        "name": "要是遗忘拔出报警",
+        "name": "钥匙遗忘拔出报警",
         "profilePic": "assets/img/speakers/cheetah.jpg",
         "about": "Charlie is a Cheetah."
       },

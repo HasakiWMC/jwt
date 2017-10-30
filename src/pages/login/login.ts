@@ -47,7 +47,7 @@ export class LoginPage {
       }
       let toast = this.toastCtrl.create({
         message: this.loginSuccessString,
-        duration: 3000,
+        duration: 1000,
         position: 'top'
       });
       toast.present();

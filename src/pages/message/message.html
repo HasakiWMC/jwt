@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'MSG_TITLE' | translate }}</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of msgItems">
+      <button ion-item (click)="openItem(item)">
+        <ion-avatar item-start>
+          <img [src]="profilePic" class="warn_circle" style="width:15px; height:15px;" *ngIf="item.hasSignal" />
+        </ion-avatar>
+        <h2>{{item.name}}</h2>
+        <!-- <p>{{item.about}}</p> -->
+
+      </button>
+
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
