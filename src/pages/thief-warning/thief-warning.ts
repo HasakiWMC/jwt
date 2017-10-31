@@ -50,4 +50,8 @@ export class ThiefWarningPage {
   queryThiefWarningHistory() {
     this.navCtrl.push(ThiefWarningHistoryPage);
   }
+
+  openItem(thiefWarningId: number) {
+
+  }
 }
