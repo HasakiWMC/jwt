@@ -18,6 +18,9 @@ import { MyApp } from './app.component';
 import { AuthHttp, AuthModule, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
 import { HttpModule, Http, Headers } from '@angular/http';
 
+import { ThiefWarningPage } from '../pages/thief-warning/thief-warning';
+import { ThiefWarningHistoryPage } from '../pages/thief-warning-history/thief-warning-history';
+
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -42,7 +45,9 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    ThiefWarningPage,
+    ThiefWarningHistoryPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,9 @@ export function provideSettings(storage: Storage) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    ThiefWarningPage,
+    ThiefWarningHistoryPage
   ],
   providers: [
     Api,

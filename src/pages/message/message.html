@@ -11,7 +11,7 @@
 
   <ion-list>
     <ion-item-sliding *ngFor="let item of msgItems">
-      <button ion-item (click)="openItem(item)">
+      <button ion-item (click)="openItem(item.msgId)">
         <ion-avatar item-start>
           <img [src]="profilePic" class="warn_circle" style="width:15px; height:15px;" *ngIf="item.hasSignal" />
         </ion-avatar>
