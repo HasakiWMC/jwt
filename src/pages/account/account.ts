@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { WelcomePage } from '../welcome/welcome'
 
 /**
  * Generated class for the AccountPage page.
@@ -22,4 +23,8 @@ export class AccountPage {
     console.log('ionViewDidLoad AccountPage');
   }
 
+  logOut() {
+    localStorage.removeItem('token');
+    this.navCtrl.push(WelcomePage);
+  }
 }
