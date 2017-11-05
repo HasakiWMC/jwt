@@ -15,11 +15,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NetworkConnectionDetectionPage {
 
+  isStartDetection: boolean;
+  detectionRate: number;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.isStartDetection = false;
+    this.detectionRate = 0;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NetworkConnectionDetectionPage');
   }
+
+  startDetection() {
+    this.isStartDetection = true;
+    var dectectionTime = setInterval(() => {
+      this.getdetectionRate();
+    }, 2000);
+  }
+
+  public getdetectionRate() {
+    this.detectionRate = this.detectionRate + 10;
+  }
+
 
 }

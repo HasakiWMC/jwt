@@ -14,5 +14,15 @@
 
 
 <ion-content padding>
+  <div padding>
+    <label *ngIf="isStartDetection">{{detectionRate}}%</label>
+    <br>
+    <button *ngIf="!isStartDetection" ion-button block (click)="startDetection()">开始网络检测</button>
 
+    <canvas *ngIf="isStartDetection" id="myDiv" class="canvas" style="width:70%">
+    </canvas>
+
+    <br>
+    <button ion-button block class="cancel">{{ 'CANCEL_BUTTON' | translate }}</button>
+  </div>
 </ion-content>

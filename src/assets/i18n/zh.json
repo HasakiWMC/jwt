@@ -48,6 +48,7 @@
   "DONE_BUTTON": "Done",
   "CANCEL_BUTTON": "取消",
   "DELETE_BUTTON": "删除",
+  "CONFIRM_BUTTON": "确认",
   "CARDS_TITLE": "Social",
   "SEARCH_TITLE": "搜索",
   "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\"",
