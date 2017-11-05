@@ -5,6 +5,8 @@ import { Item } from '../../models/item';
 import { Items } from '../../providers/providers';
 
 import { ThiefWarningPage } from '../thief-warning/thief-warning';
+import { KeyForgetWarningPage } from '../key-forget-warning/key-forget-warning';
+import { PersonInOrOutDoorPage } from '../person-in-or-out-door/person-in-or-out-door';
 
 @IonicPage()
 @Component({
@@ -44,6 +46,10 @@ export class MessagePage {
   openItem(msgId: number) {
     if (msgId == 1) {
       this.navCtrl.push(ThiefWarningPage);
+    } else if (msgId == 2) {
+      this.navCtrl.push(KeyForgetWarningPage);
+    } else if (msgId == 3) {
+      this.navCtrl.push(PersonInOrOutDoorPage);
     }
 
   }

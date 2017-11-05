@@ -54,5 +54,10 @@
   "ThiefWarningHistory_Title": "盗警历史记录",
   "ThiefWarningFakeKey_Title": "盗贼假钥匙开锁报警",
   "ThiefWarningDemolitionLockCore_Title": "盗贼拆锁芯报警",
-  "ThiefWarningPryDoor_Title": "盗贼撬门报警"
+  "ThiefWarningPryDoor_Title": "盗贼撬门报警",
+  "KeyForgetWarning_Title": "钥匙遗忘拔出报警",
+  "PersonInOrOutDoor_Title": "有人进出门",
+  "Query_History": "查询历史记录",
+  "KeyForgetWarningHistory_Title": "钥匙遗忘拔出历史记录",
+  "PersonInOrOutDoorHistory_Title": "有人进出门历史记录"
 }

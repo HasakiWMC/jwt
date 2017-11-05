@@ -23,6 +23,10 @@ import { ThiefWarningHistoryPage } from '../pages/thief-warning-history/thief-wa
 import { ThiefFakeKeyPage } from '../pages/thief-fake-key/thief-fake-key';
 import { ThiefDemolitionLockCorePage } from '../pages/thief-demolition-lock-core/thief-demolition-lock-core';
 import { ThiefPryDoorPage } from '../pages/thief-pry-door/thief-pry-door';
+import { KeyForgetWarningPage } from '../pages/key-forget-warning/key-forget-warning';
+import { PersonInOrOutDoorPage } from '../pages/person-in-or-out-door/person-in-or-out-door';
+import { KeyForgetWarningHistoryPage } from '../pages/key-forget-warning-history/key-forget-warning-history';
+import { PersonInOrOutDoorHistoryPage } from '../pages/person-in-or-out-door-history/person-in-or-out-door-history';
 
 
 // The translate loader needs to know where to load i18n files
@@ -53,7 +57,11 @@ export function provideSettings(storage: Storage) {
     ThiefWarningHistoryPage,
     ThiefFakeKeyPage,
     ThiefDemolitionLockCorePage,
-    ThiefPryDoorPage
+    ThiefPryDoorPage,
+    KeyForgetWarningPage,
+    PersonInOrOutDoorPage,
+    KeyForgetWarningHistoryPage,
+    PersonInOrOutDoorHistoryPage
   ],
   imports: [
     BrowserModule,
@@ -77,7 +85,11 @@ export function provideSettings(storage: Storage) {
     ThiefWarningHistoryPage,
     ThiefFakeKeyPage,
     ThiefDemolitionLockCorePage,
-    ThiefPryDoorPage
+    ThiefPryDoorPage,
+    KeyForgetWarningPage,
+    PersonInOrOutDoorPage,
+    KeyForgetWarningHistoryPage,
+    PersonInOrOutDoorHistoryPage
   ],
   providers: [
     Api,
