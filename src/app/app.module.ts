@@ -28,6 +28,10 @@ import { PersonInOrOutDoorPage } from '../pages/person-in-or-out-door/person-in-
 import { KeyForgetWarningHistoryPage } from '../pages/key-forget-warning-history/key-forget-warning-history';
 import { PersonInOrOutDoorHistoryPage } from '../pages/person-in-or-out-door-history/person-in-or-out-door-history';
 
+import { LockFeatureConfirmPage } from '../pages/lock-feature-confirm/lock-feature-confirm'
+import { InOrOutDisplayFunctionSelectionPage } from '../pages/in-or-out-display-function-selection/in-or-out-display-function-selection'
+import { AdditionalBeepSettingsPage } from '../pages/additional-beep-settings/additional-beep-settings'
+import { NetworkConnectionDetectionPage } from '../pages/network-connection-detection/network-connection-detection'
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -61,7 +65,11 @@ export function provideSettings(storage: Storage) {
     KeyForgetWarningPage,
     PersonInOrOutDoorPage,
     KeyForgetWarningHistoryPage,
-    PersonInOrOutDoorHistoryPage
+    PersonInOrOutDoorHistoryPage,
+    LockFeatureConfirmPage,
+    InOrOutDisplayFunctionSelectionPage,
+    AdditionalBeepSettingsPage,
+    NetworkConnectionDetectionPage
   ],
   imports: [
     BrowserModule,
@@ -89,7 +97,11 @@ export function provideSettings(storage: Storage) {
     KeyForgetWarningPage,
     PersonInOrOutDoorPage,
     KeyForgetWarningHistoryPage,
-    PersonInOrOutDoorHistoryPage
+    PersonInOrOutDoorHistoryPage,
+    LockFeatureConfirmPage,
+    InOrOutDisplayFunctionSelectionPage,
+    AdditionalBeepSettingsPage,
+    NetworkConnectionDetectionPage
   ],
   providers: [
     Api,
