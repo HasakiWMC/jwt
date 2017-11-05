@@ -20,6 +20,9 @@ import { HttpModule, Http, Headers } from '@angular/http';
 
 import { ThiefWarningPage } from '../pages/thief-warning/thief-warning';
 import { ThiefWarningHistoryPage } from '../pages/thief-warning-history/thief-warning-history';
+import { ThiefFakeKeyPage } from '../pages/thief-fake-key/thief-fake-key';
+import { ThiefDemolitionLockCorePage } from '../pages/thief-demolition-lock-core/thief-demolition-lock-core';
+import { ThiefPryDoorPage } from '../pages/thief-pry-door/thief-pry-door';
 
 
 // The translate loader needs to know where to load i18n files
@@ -47,7 +50,10 @@ export function provideSettings(storage: Storage) {
   declarations: [
     MyApp,
     ThiefWarningPage,
-    ThiefWarningHistoryPage
+    ThiefWarningHistoryPage,
+    ThiefFakeKeyPage,
+    ThiefDemolitionLockCorePage,
+    ThiefPryDoorPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +74,10 @@ export function provideSettings(storage: Storage) {
   entryComponents: [
     MyApp,
     ThiefWarningPage,
-    ThiefWarningHistoryPage
+    ThiefWarningHistoryPage,
+    ThiefFakeKeyPage,
+    ThiefDemolitionLockCorePage,
+    ThiefPryDoorPage
   ],
   providers: [
     Api,

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ThiefWarningHistoryPage } from '../thief-warning-history/thief-warning-history';
+import { ThiefFakeKeyPage } from '../thief-fake-key/thief-fake-key';
+import { ThiefDemolitionLockCorePage } from '../thief-demolition-lock-core/thief-demolition-lock-core'
+import { ThiefPryDoorPage } from '../thief-pry-door/thief-pry-door'
 
 /**
  * Generated class for the ThiefWarningPage page.
@@ -52,6 +55,12 @@ export class ThiefWarningPage {
   }
 
   openItem(thiefWarningId: number) {
-
+    if (thiefWarningId == 1) {
+      this.navCtrl.push(ThiefFakeKeyPage);
+    } else if (thiefWarningId == 2) {
+      this.navCtrl.push(ThiefDemolitionLockCorePage);
+    } else if (thiefWarningId == 3) {
+      this.navCtrl.push(ThiefPryDoorPage);
+    }
   }
 }

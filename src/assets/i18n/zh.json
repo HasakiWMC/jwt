@@ -51,5 +51,8 @@
   "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\"",
   "ThiefWarning_Title": "有盗报警",
   "Query_ThiefWarning_History": "查询盗警历史记录",
-  "ThiefWarningHistory_Title": "盗警历史记录"
+  "ThiefWarningHistory_Title": "盗警历史记录",
+  "ThiefWarningFakeKey_Title": "盗贼假钥匙开锁报警",
+  "ThiefWarningDemolitionLockCore_Title": "盗贼拆锁芯报警",
+  "ThiefWarningPryDoor_Title": "盗贼撬门报警"
 }
