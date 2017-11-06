@@ -1,26 +1,30 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the NetworkConnectionDetectionPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ViewChild, QueryList, ElementRef, AfterViewInit, Renderer, OnInit } from '@angular/core';
 
 @IonicPage()
 @Component({
   selector: 'page-network-connection-detection',
   templateUrl: 'network-connection-detection.html',
 })
+
+
 export class NetworkConnectionDetectionPage {
 
   isStartDetection: boolean;
-  detectionRate: number;
+  isOverDetection: boolean;
+  curRate: number;
+  preRate: number;
+  dectectionTime: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  @ViewChild('myProgressBar')
+  myProgressBar: ElementRef;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private elementRef: ElementRef, private renderer: Renderer) {
     this.isStartDetection = false;
-    this.detectionRate = 0;
+    this.isOverDetection = false;
+    this.curRate = 0;
+    this.preRate = 0;
   }
 
   ionViewDidLoad() {
@@ -28,15 +32,40 @@ export class NetworkConnectionDetectionPage {
   }
 
   startDetection() {
+    this.curRate = 0;
+    this.isOverDetection = false;
     this.isStartDetection = true;
-    var dectectionTime = setInterval(() => {
+    this.dectectionTime = setInterval(() => {
       this.getdetectionRate();
     }, 2000);
+
   }
 
   public getdetectionRate() {
-    this.detectionRate = this.detectionRate + 10;
+    if (this.curRate < 100) {
+      this.preRate = this.curRate;
+      this.curRate = this.curRate + 10;
+      var delta = this.curRate - this.preRate;
+      this.renderer.setElementStyle(this.myProgressBar.nativeElement, 'width', this.curRate + '%');
+    }
+    else {
+      clearInterval(this.dectectionTime)
+      this.isOverDetection = true;
+    }
+
   }
 
+  closeDetection() {
+    clearInterval(this.dectectionTime)
+    this.isStartDetection = false;
+    this.curRate = 0
+  }
+  // ngAfterViewInit() {
+  //   // this.myProgressBar.nativeElement.style.width = '20%';
+  //   // this.renderer.setElementStyle(this.myProgressBar.nativeElement, 'width', '20%');
+  // }
 
+  // ngOnInit() {
+
+  // }
 }
