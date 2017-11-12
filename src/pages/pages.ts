@@ -14,3 +14,4 @@ export const Tab4Root = 'TestJwtPage';
 export const MessageRoot = 'MessagePage';
 export const DeviceRoot = 'DevicePage';
 export const AccountRoot = 'AccountPage';
+export const TestingRoot = 'TestingPage';

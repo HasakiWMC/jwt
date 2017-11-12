@@ -10,6 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { JPush } from 'ionic3-jpush';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
@@ -110,6 +111,7 @@ export function provideSettings(storage: Storage) {
     Items,
     User,
     Camera,
+    NativeAudio,
     SplashScreen,
     StatusBar,
     AuthHttp,

@@ -9,6 +9,7 @@ import { Tab4Root } from '../pages';
 import { MessageRoot } from '../pages';
 import { DeviceRoot } from '../pages';
 import { AccountRoot } from '../pages';
+import { TestingRoot } from '../pages';
 
 
 @IonicPage()
@@ -24,6 +25,7 @@ export class TabsPage {
   messageRoot: any = MessageRoot;
   deviceRoot: any = DeviceRoot;
   accountRoot: any = AccountRoot;
+  testingRoot: any = TestingRoot;
 
   tab1Title = " ";
   tab2Title = " ";
@@ -32,10 +34,11 @@ export class TabsPage {
   messageTitle = " ";
   deviceTitle = " ";
   accountTitle = " ";
+  testingTitle = " ";
 
 
   constructor(public navCtrl: NavController, public translateService: TranslateService) {
-    translateService.get(['TAB1_TITLE', 'TAB2_TITLE', 'TAB3_TITLE', 'TAB4_TITLE', 'MSG_TITLE', 'DEVICE_TITLE', 'ACCOUNT_TITLE']).subscribe(values => {
+    translateService.get(['TAB1_TITLE', 'TAB2_TITLE', 'TAB3_TITLE', 'TAB4_TITLE', 'MSG_TITLE', 'DEVICE_TITLE', 'ACCOUNT_TITLE', 'TEST_TITLE']).subscribe(values => {
       this.tab1Title = values['TAB1_TITLE'];
       this.tab2Title = values['TAB2_TITLE'];
       this.tab3Title = values['TAB3_TITLE'];
@@ -43,6 +46,7 @@ export class TabsPage {
       this.messageTitle = values['MSG_TITLE'];
       this.deviceTitle = values['DEVICE_TITLE'];
       this.accountTitle = values['ACCOUNT_TITLE'];
+      this.testingTitle = values['TEST_TITLE'];
     });
   }
 }
