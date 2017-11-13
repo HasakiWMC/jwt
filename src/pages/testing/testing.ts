@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { JPush } from 'ionic3-jpush';
 
 /**
  * Generated class for the TestingPage page.
@@ -15,13 +16,22 @@ import { NativeAudio } from '@ionic-native/native-audio';
   templateUrl: 'testing.html',
 })
 export class TestingPage {
+  alias: any;
+  aliasToBeSet: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private nativeAudio: NativeAudio) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private nativeAudio: NativeAudio, private jPush: JPush) {
     this.nativeAudio.preloadSimple('uniqueId1', 'assets/media/braveShine_clip.mp3').then(function () {
       console.log('success')
     }, function (err) {
       console.log(err)
     });
+
+    this.aliasToBeSet = "SmartLocker_1246"
+    jPush.init();
+    document.addEventListener("jpush.receiveMessage", function (event) {
+      var message
+      this.alias = event['message']
+    }, false)
   }
 
   ionViewDidLoad() {
@@ -65,5 +75,28 @@ export class TestingPage {
     });
     navigator.vibrate(0);
   }
+
+  setAlias() {
+    var that = this;
+    this.jPush.setAlias({ sequence: 1, alias: "smartLocker_3721" }).then(function (result) {
+      var sequence = result.sequence
+      that.alias = result.alias
+    }, function (error) {
+      var sequence = error.sequence
+      that.alias = error.code
+    })
+  }
+
+  getAlias() {
+    var that = this;
+    this.jPush.getAlias({ sequence: 1 }).then(function (result) {
+      var sequence = result.sequence
+      that.alias = result.alias
+    }, function (error) {
+      var sequence = error.sequence
+      that.alias = error.code
+    })
+  }
+
 
 }
