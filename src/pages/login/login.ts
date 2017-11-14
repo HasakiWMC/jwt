@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, ModalController } from 'ionic-angular';
 
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
@@ -25,7 +25,9 @@ export class LoginPage {
   private loginErrorString: string;
   private loginSuccessString: string;
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public modalCtrl: ModalController,
+    public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService,
@@ -53,7 +55,8 @@ export class LoginPage {
         position: 'top'
       });
       toast.present();
-      this.navCtrl.push(MainPage);
+      let modal = this.modalCtrl.create(MainPage);
+      modal.present();
 
       this.user.user().subscribe((resp2) => {
         var res2 = resp2.json();

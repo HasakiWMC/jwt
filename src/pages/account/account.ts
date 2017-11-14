@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { WelcomePage } from '../welcome/welcome'
 
 /**
@@ -16,7 +16,10 @@ import { WelcomePage } from '../welcome/welcome'
 })
 export class AccountPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -25,6 +28,7 @@ export class AccountPage {
 
   logOut() {
     localStorage.removeItem('token');
-    this.navCtrl.push(WelcomePage);
+    let modal = this.modalCtrl.create(WelcomePage);
+    modal.present();
   }
 }

@@ -100,15 +100,4 @@ export class TestingPage {
       that.alias = error.code
     })
   }
-
-
-  getUserAlias() {
-    this.user.user().subscribe((resp2) => {
-      var res2 = resp2.json();
-      console.log(res2)
-    }, (err2) => {
-      console.error("get alias err")
-    });
-  }
-
 }

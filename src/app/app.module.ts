@@ -21,6 +21,8 @@ import { MyApp } from './app.component';
 import { AuthHttp, AuthModule, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
 import { HttpModule, Http, Headers } from '@angular/http';
 
+import { WelcomePage } from '../pages/welcome/welcome';
+
 import { ThiefWarningPage } from '../pages/thief-warning/thief-warning';
 import { ThiefWarningHistoryPage } from '../pages/thief-warning-history/thief-warning-history';
 import { ThiefFakeKeyPage } from '../pages/thief-fake-key/thief-fake-key';
