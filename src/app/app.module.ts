@@ -118,7 +118,7 @@ export function provideSettings(storage: Storage) {
     JPush,
     provideAuth({
       headerName: 'Authorization',
-      headerPrefix: 'bearer',
+      headerPrefix: 'jwt',
       tokenName: 'token',
       tokenGetter: (() => localStorage.getItem('token')),
       globalHeaders: [{ 'Content-Type': 'application/json' }],

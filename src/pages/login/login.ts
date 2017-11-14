@@ -5,6 +5,7 @@ import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
 import { WelcomePage } from '../welcome/welcome';
+import { JPush } from 'ionic3-jpush';
 
 @IonicPage()
 @Component({
@@ -27,7 +28,8 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    private jPush: JPush) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
@@ -52,6 +54,21 @@ export class LoginPage {
       });
       toast.present();
       this.navCtrl.push(MainPage);
+
+      this.user.user().subscribe((resp2) => {
+        var res2 = resp2.json();
+        var alias = 'smartLocker_' + res2['data']['id']
+        console.log(alias)
+        this.jPush.setAlias({ sequence: 1, alias: alias }).then(function (result) {
+
+        }, function (error) {
+          var sequence = error.sequence
+
+        })
+      }, (err2) => {
+        console.error("get alias err")
+      });
+
     }, (err) => {
       this.navCtrl.push(WelcomePage);
       // Unable to log in

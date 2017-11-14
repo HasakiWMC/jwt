@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NativeAudio } from '@ionic-native/native-audio';
 import { JPush } from 'ionic3-jpush';
 
+import { User } from '../../providers/providers';
+
 /**
  * Generated class for the TestingPage page.
  *
@@ -19,7 +21,8 @@ export class TestingPage {
   alias: any;
   aliasToBeSet: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private nativeAudio: NativeAudio, private jPush: JPush) {
+
+  constructor(public user: User, public navCtrl: NavController, public navParams: NavParams, private nativeAudio: NativeAudio, private jPush: JPush) {
     this.nativeAudio.preloadSimple('uniqueId1', 'assets/media/braveShine_clip.mp3').then(function () {
       console.log('success')
     }, function (err) {
@@ -98,5 +101,14 @@ export class TestingPage {
     })
   }
 
+
+  getUserAlias() {
+    this.user.user().subscribe((resp2) => {
+      var res2 = resp2.json();
+      console.log(res2)
+    }, (err2) => {
+      console.error("get alias err")
+    });
+  }
 
 }

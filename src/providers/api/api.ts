@@ -51,4 +51,8 @@ export class Api {
   authPost(endpoint: string, body: any, reqOpts?: any) {
     return this.authHttp.post(this.url + '/' + endpoint, body, reqOpts);
   }
+
+  authGet(endpoint: string, reqOpts?: any) {
+    return this.authHttp.get(this.url + '/' + endpoint, reqOpts);
+  }
 }

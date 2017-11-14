@@ -46,7 +46,18 @@ export class User {
     }, err => {
       console.error('ERROR', err);
     });
+    return seq;
+  }
 
+  user() {
+    let seq = this.api.authGet('user').share();
+
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response, mark the user as logged in
+      console.log('Success', res);
+    }, err => {
+      console.error('ERROR', err);
+    });
     return seq;
   }
 
