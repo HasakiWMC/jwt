@@ -8,6 +8,7 @@ import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { BackButtonService } from "../services/backButton.service";
 
 import { JPush } from 'ionic3-jpush';
 import { NativeAudio } from '@ionic-native/native-audio';
@@ -118,6 +119,7 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     AuthHttp,
     JPush,
+    BackButtonService,
     provideAuth({
       headerName: 'Authorization',
       headerPrefix: 'jwt',

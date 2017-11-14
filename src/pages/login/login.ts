@@ -6,6 +6,9 @@ import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
 import { WelcomePage } from '../welcome/welcome';
 import { JPush } from 'ionic3-jpush';
+import { Platform } from 'ionic-angular';
+import { BackButtonService } from "../../services/backButton.service";
+
 
 @IonicPage()
 @Component({
@@ -31,7 +34,12 @@ export class LoginPage {
     public user: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService,
-    private jPush: JPush) {
+    private jPush: JPush,
+    private platform: Platform,
+    private backButtonService: BackButtonService, ) {
+    platform.ready().then(() => {
+      this.backButtonService.registerBackButtonAction(null);
+    });
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
