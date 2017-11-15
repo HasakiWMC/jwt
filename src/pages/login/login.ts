@@ -20,8 +20,8 @@ export class LoginPage {
   // If you're using the username field with or without email, make
   // sure to add it to the type
   account: { username: string, password: string } = {
-    username: 'wmc',
-    password: 'test'
+    username: '',
+    password: ''
   };
 
   // Our translated text strings
@@ -48,6 +48,8 @@ export class LoginPage {
     this.translateService.get('LOGIN_SUCCESS').subscribe((value) => {
       this.loginSuccessString = value;
     })
+
+    this.account.username = localStorage.getItem('username')
   }
 
   // Attempt to login in through our User service
@@ -66,19 +68,7 @@ export class LoginPage {
       let modal = this.modalCtrl.create(MainPage);
       modal.present();
 
-      this.user.user().subscribe((resp2) => {
-        var res2 = resp2.json();
-        var alias = 'smartLocker_' + res2['data']['id']
-        console.log(alias)
-        this.jPush.setAlias({ sequence: 1, alias: alias }).then(function (result) {
-
-        }, function (error) {
-          var sequence = error.sequence
-
-        })
-      }, (err2) => {
-        console.error("get alias err")
-      });
+      this.setAlias();
 
     }, (err) => {
       this.navCtrl.push(WelcomePage);
@@ -89,6 +79,22 @@ export class LoginPage {
         position: 'top'
       });
       toast.present();
+    });
+  }
+
+  setAlias() {
+    this.user.user().subscribe((resp2) => {
+      var res2 = resp2.json();
+      var alias = 'smartLocker_' + res2['data']['id']
+      console.log(alias)
+      this.jPush.setAlias({ sequence: 1, alias: alias }).then(function (result) {
+
+      }, function (error) {
+        var sequence = error.sequence
+
+      })
+    }, (err2) => {
+      console.error("get alias err")
     });
   }
 }

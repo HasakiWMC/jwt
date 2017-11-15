@@ -23,6 +23,7 @@ import { AuthHttp, AuthModule, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'a
 import { HttpModule, Http, Headers } from '@angular/http';
 
 import { WelcomePage } from '../pages/welcome/welcome';
+import { LoginPage } from '../pages/login/login';
 
 import { ThiefWarningPage } from '../pages/thief-warning/thief-warning';
 import { ThiefWarningHistoryPage } from '../pages/thief-warning-history/thief-warning-history';

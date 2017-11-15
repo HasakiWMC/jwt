@@ -5,6 +5,7 @@ import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
 import { WelcomePage } from '../welcome/welcome';
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -15,10 +16,11 @@ export class SignupPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { username: string, email: string, password: string } = {
-    username: 'test',
-    email: 'test@example.com',
-    password: 'test'
+  account: { username: string, email: string, password: string, passwordAgain: string } = {
+    username: '',
+    email: '',
+    password: '',
+    passwordAgain: ''
   };
 
   // Our translated text strings
@@ -36,6 +38,10 @@ export class SignupPage {
 
   doSignup() {
     // Attempt to login in through our User service
+    if (!this.validateInput()) {
+      return
+    }
+
     this.user.signup(this.account).subscribe((resp) => {
       if (resp) {
         // var res = resp.json();
@@ -49,7 +55,9 @@ export class SignupPage {
         console.log(status);
       }
       if (status == true) {
-        this.navCtrl.push(WelcomePage);
+        localStorage.setItem('username', this.account.username)
+
+        this.navCtrl.push(LoginPage);
 
         let toast = this.toastCtrl.create({
           message: msg,
@@ -78,5 +86,27 @@ export class SignupPage {
       });
       toast.present();
     });
+  }
+
+  validateInput() {
+    var isCorrect = true;
+    if (this.account.username == "" || this.account.email == "" || this.account.password == "" || this.account.passwordAgain == "") {
+      this.signupErrorString = "输入不能为空"
+      isCorrect = false;
+    } else if (this.account.password != this.account.passwordAgain) {
+      this.signupErrorString = "两次密码不一致"
+      isCorrect = false;
+    }
+    if (!isCorrect) {
+      let toast = this.toastCtrl.create({
+        message: this.signupErrorString,
+        duration: 1000,
+        position: 'top'
+      });
+      toast.present();
+      return false;
+    } else {
+      return true;
+    }
   }
 }

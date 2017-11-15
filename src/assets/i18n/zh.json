@@ -4,6 +4,7 @@
   "EMAIL": "电子邮箱",
   "USERNAME": "用户名",
   "PASSWORD": "密码",
+  "PASSWORD_AGAIN": "重复密码",
   "LOGIN": "登录",
   "SIGNUP": "注册",
   "TAB1_TITLE": "消息",
