@@ -8,6 +8,7 @@ import { WelcomePage } from '../welcome/welcome';
 import { JPush } from 'ionic3-jpush';
 import { Platform } from 'ionic-angular';
 import { BackButtonService } from "../../services/backButton.service";
+import { NativeAudio } from '@ionic-native/native-audio';
 
 
 @IonicPage()
@@ -36,7 +37,8 @@ export class LoginPage {
     public translateService: TranslateService,
     private jPush: JPush,
     private platform: Platform,
-    private backButtonService: BackButtonService, ) {
+    private backButtonService: BackButtonService,
+    private nativeAudio: NativeAudio) {
     platform.ready().then(() => {
       this.backButtonService.registerBackButtonAction(null);
     });
@@ -50,6 +52,12 @@ export class LoginPage {
     })
 
     this.account.username = localStorage.getItem('username')
+
+    this.nativeAudio.preloadSimple('uniqueId1', 'assets/media/braveShine_clip.mp3').then(function () {
+      console.log('success')
+    }, function (err) {
+      console.log(err)
+    });
   }
 
   // Attempt to login in through our User service
@@ -67,6 +75,29 @@ export class LoginPage {
       toast.present();
       let modal = this.modalCtrl.create(MainPage);
       modal.present();
+
+      this.jPush.init();
+      var that = this;
+
+      document.addEventListener("jpush.receiveMessage", function (event) {
+        console.log("receiveMessage");
+      }, false)
+
+      document.addEventListener("jpush.receiveNotification", function (event) {
+        console.log("receiveNotification");
+        if ("warn" == event['alert']) {
+          that.vibrationAndMedia()
+        }
+      }, false)
+
+      document.addEventListener("jpush.openNotification", function (event) {
+        console.log("openNotification");
+        that.stopVibrationAndMedia()
+      }, false)
+
+      document.addEventListener("jpush.setTagsWithAlias", function (event) {
+        console.log("setTagsWithAlias");
+      }, false)
 
       this.setAlias();
 
@@ -96,5 +127,34 @@ export class LoginPage {
     }, (err2) => {
       console.error("get alias err")
     });
+  }
+
+  media() {
+    this.nativeAudio.play('uniqueId1').then(function () {
+      console.log('success')
+    }, function (err) {
+      console.log(err)
+    });
+  }
+
+  vibrationAndMedia() {
+    this.media();
+    navigator.vibrate([
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000
+    ]);
+  }
+
+  stopVibrationAndMedia() {
+    this.nativeAudio.stop('uniqueId1').then(function () {
+      console.log('success')
+    }, function (err) {
+      console.log(err)
+    });
+    navigator.vibrate(0);
   }
 }

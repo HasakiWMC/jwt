@@ -19,7 +19,6 @@ import { User } from '../../providers/providers';
 })
 export class TestingPage {
   alias: any;
-  aliasToBeSet: string;
 
 
   constructor(public user: User, public navCtrl: NavController, public navParams: NavParams, private nativeAudio: NativeAudio, private jPush: JPush) {
@@ -29,12 +28,7 @@ export class TestingPage {
       console.log(err)
     });
 
-    this.aliasToBeSet = "SmartLocker_1246"
-    jPush.init();
-    document.addEventListener("jpush.receiveMessage", function (event) {
-      var message
-      this.alias = event['message']
-    }, false)
+
   }
 
   ionViewDidLoad() {
