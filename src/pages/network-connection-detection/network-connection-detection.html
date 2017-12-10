@@ -15,15 +15,12 @@
 
 <ion-content padding>
   <div padding *ngIf="!isOverDetection">
-    <label *ngIf="isStartDetection">{{curRate}}%</label>
+
     <br>
     <button *ngIf="!isStartDetection" ion-button block (click)="startDetection()">开始网络检测</button>
 
-    <canvas *ngIf="isStartDetection" #myProgressBar class="canvas" style="width:0%">
-    </canvas>
-
     <br>
-    <button *ngIf="isStartDetection" ion-button block class="cancel" (click)="closeDetection()">{{ 'CANCEL_BUTTON' | translate }}</button>
+
   </div>
 
   <div padding *ngIf="isOverDetection">
