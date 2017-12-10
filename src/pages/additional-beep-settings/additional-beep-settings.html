@@ -8,10 +8,27 @@
 
 
 <ion-content>
-  <ion-item *ngFor="let item of beepItems">
-    <label item-left>{{item.name}}</label>
-    <ion-toggle></ion-toggle>
-  </ion-item>
+  <ion-list radio-group [(ngModel)]="beepItem">
+    <ion-item>
+      <ion-label>煤气关好了吗？</ion-label>
+      <ion-radio value="1"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>保健药品带了吗？</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>请带好证件</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>请关好窗户</ion-label>
+      <ion-radio value="4"></ion-radio>
+    </ion-item>
+  </ion-list>
 
   <div style="margin-left: 15px; margin-right: 15px;">
     <label>说明：xxxxxxxxxxxx</label>
@@ -22,6 +39,6 @@
   <div padding>
     <button ion-button block (click)="signup()" class="cancel">{{ 'CANCEL_BUTTON' | translate }}</button>
     <br>
-    <button ion-button block (click)="login()">{{ 'CONFIRM_BUTTON' | translate }}</button>
+    <button ion-button block (click)="save()">{{ 'CONFIRM_BUTTON' | translate }}</button>
   </div>
 </ion-content>

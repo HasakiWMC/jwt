@@ -14,35 +14,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'additional-beep-settings.html',
 })
 export class AdditionalBeepSettingsPage {
-  beepItems: any[];
+  beepItem: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.beepItems = [
-      {
-        "beepId": 1,
-        "name": "煤气关好了吗？",
-        "hasSignal": true
-      },
-      {
-        "beepId": 2,
-        "name": "保健药品带了吗？",
-        "hasSignal": true
-      },
-      {
-        "beepId": 3,
-        "name": "请带好证件",
-        "hasSignal": false
-      },
-      {
-        "beepId": 4,
-        "name": "请关好窗户",
-        "hasSignal": false
-      }
-    ];
+    this.beepItem = 3
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AdditionalBeepSettingsPage');
   }
 
+  save() {
+    console.log(this.beepItem);
+  }
 }
