@@ -54,8 +54,10 @@ export class NetworkConnectionDetectionPage {
 
 
     if (true) {
+      this.successRate = 100
       this.loadingInstance.dismiss();
       clearInterval(this.dectectionTime)
+      this.isOverDetection = true
     }
 
   }
