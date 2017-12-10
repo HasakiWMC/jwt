@@ -5,10 +5,11 @@ import { IonicPage, NavController, ToastController, ModalController } from 'ioni
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
 import { WelcomePage } from '../welcome/welcome';
-import { JPush } from 'ionic3-jpush';
+
 import { Platform } from 'ionic-angular';
 import { BackButtonService } from "../../services/backButton.service";
-import { NativeAudio } from '@ionic-native/native-audio';
+import { JPush } from 'ionic3-jpush';
+
 
 
 @IonicPage()
@@ -35,10 +36,10 @@ export class LoginPage {
     public user: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService,
-    private jPush: JPush,
     private platform: Platform,
     private backButtonService: BackButtonService,
-    private nativeAudio: NativeAudio) {
+    private jPush: JPush,
+  ) {
     platform.ready().then(() => {
       this.backButtonService.registerBackButtonAction(null);
     });
@@ -52,12 +53,6 @@ export class LoginPage {
     })
 
     this.account.username = localStorage.getItem('username')
-
-    this.nativeAudio.preloadSimple('uniqueId1', 'assets/media/braveShine_clip.mp3').then(function () {
-      console.log('success')
-    }, function (err) {
-      console.log(err)
-    });
   }
 
   // Attempt to login in through our User service
@@ -77,28 +72,6 @@ export class LoginPage {
       let modal = this.modalCtrl.create(MainPage);
       modal.present();
 
-      this.jPush.init();
-      var that = this;
-
-      document.addEventListener("jpush.receiveMessage", function (event) {
-        console.log("receiveMessage");
-      }, false)
-
-      document.addEventListener("jpush.receiveNotification", function (event) {
-        console.log("receiveNotification");
-        if ("warn" == event['alert']) {
-          that.vibrationAndMedia()
-        }
-      }, false)
-
-      document.addEventListener("jpush.openNotification", function (event) {
-        console.log("openNotification");
-        that.stopVibrationAndMedia()
-      }, false)
-
-      document.addEventListener("jpush.setTagsWithAlias", function (event) {
-        console.log("setTagsWithAlias");
-      }, false)
 
       this.setAlias();
 
@@ -130,32 +103,4 @@ export class LoginPage {
     });
   }
 
-  media() {
-    this.nativeAudio.play('uniqueId1').then(function () {
-      console.log('success')
-    }, function (err) {
-      console.log(err)
-    });
-  }
-
-  vibrationAndMedia() {
-    this.media();
-    navigator.vibrate([
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000
-    ]);
-  }
-
-  stopVibrationAndMedia() {
-    this.nativeAudio.stop('uniqueId1').then(function () {
-      console.log('success')
-    }, function (err) {
-      console.log(err)
-    });
-    navigator.vibrate(0);
-  }
 }

@@ -12,6 +12,9 @@ import { DeviceRoot } from '../pages';
 import { AccountRoot } from '../pages';
 import { TestingRoot } from '../pages';
 
+import { NativeAudio } from '@ionic-native/native-audio';
+import { JPush } from 'ionic3-jpush';
+
 
 @IonicPage()
 @Component({
@@ -44,7 +47,10 @@ export class TabsPage {
     public navCtrl: NavController,
     public translateService: TranslateService,
     private platform: Platform,
-    public backButtonService: BackButtonService) {
+    public backButtonService: BackButtonService,
+    private jPush: JPush,
+    private nativeAudio: NativeAudio
+  ) {
     translateService.get(['TAB1_TITLE', 'TAB2_TITLE', 'TAB3_TITLE', 'TAB4_TITLE', 'MSG_TITLE', 'DEVICE_TITLE', 'ACCOUNT_TITLE', 'TEST_TITLE']).subscribe(values => {
       this.tab1Title = values['TAB1_TITLE'];
       this.tab2Title = values['TAB2_TITLE'];
@@ -59,5 +65,66 @@ export class TabsPage {
     platform.ready().then(() => {
       this.backButtonService.registerBackButtonAction(this.tabRef);
     });
+
+    this.nativeAudio.preloadSimple('uniqueId1', 'assets/media/braveShine_clip.mp3').then(function () {
+      console.log('success')
+    }, function (err) {
+      console.log(err)
+    });
+
+    this.jPush.init();
+    var that = this;
+
+    document.addEventListener("jpush.receiveMessage", function (event) {
+      console.log("receiveMessage");
+    }, false)
+
+    document.addEventListener("jpush.receiveNotification", function (event) {
+      console.log("receiveNotification");
+      if ("warn" == event['alert']) {
+        that.vibrationAndMedia()
+      }
+    }, false)
+
+    document.addEventListener("jpush.openNotification", function (event) {
+      console.log("openNotification");
+      that.stopVibrationAndMedia()
+    }, false)
+
+    document.addEventListener("jpush.setTagsWithAlias", function (event) {
+      console.log("setTagsWithAlias");
+    }, false)
+
+
+  }
+
+
+  media() {
+    this.nativeAudio.play('uniqueId1').then(function () {
+      console.log('success')
+    }, function (err) {
+      console.log(err)
+    });
+  }
+
+  vibrationAndMedia() {
+    this.media();
+    navigator.vibrate([
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000
+    ]);
+  }
+
+  stopVibrationAndMedia() {
+    this.nativeAudio.stop('uniqueId1').then(function () {
+      console.log('success')
+    }, function (err) {
+      console.log(err)
+    });
+    navigator.vibrate(0);
   }
 }
