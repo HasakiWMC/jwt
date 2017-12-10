@@ -40,6 +40,7 @@ import { LockFeatureConfirmPage } from '../pages/lock-feature-confirm/lock-featu
 import { InOrOutDisplayFunctionSelectionPage } from '../pages/in-or-out-display-function-selection/in-or-out-display-function-selection'
 import { AdditionalBeepSettingsPage } from '../pages/additional-beep-settings/additional-beep-settings'
 import { NetworkConnectionDetectionPage } from '../pages/network-connection-detection/network-connection-detection'
+import { MessagingMethodSettingsPage } from '../pages/messaging-method-settings/messaging-method-settings'
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -78,6 +79,7 @@ export function provideSettings(storage: Storage) {
     InOrOutDisplayFunctionSelectionPage,
     AdditionalBeepSettingsPage,
     NetworkConnectionDetectionPage,
+    MessagingMethodSettingsPage
   ],
   imports: [
     BrowserModule,
@@ -111,7 +113,8 @@ export function provideSettings(storage: Storage) {
     InOrOutDisplayFunctionSelectionPage,
     AdditionalBeepSettingsPage,
     NetworkConnectionDetectionPage,
-    WelcomePage
+    WelcomePage,
+    MessagingMethodSettingsPage
   ],
   providers: [
     Api,
