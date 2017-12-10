@@ -4,6 +4,7 @@ import { LockFeatureConfirmPage } from '../lock-feature-confirm/lock-feature-con
 import { InOrOutDisplayFunctionSelectionPage } from '../in-or-out-display-function-selection/in-or-out-display-function-selection'
 import { AdditionalBeepSettingsPage } from '../additional-beep-settings/additional-beep-settings'
 import { NetworkConnectionDetectionPage } from '../network-connection-detection/network-connection-detection'
+import { MessagingMethodSettingsPage } from '../messaging-method-settings/messaging-method-settings'
 
 
 /**
@@ -29,7 +30,7 @@ export class DevicePage {
       },
       {
         "deviceId": 2,
-        "name": "进出门显示功能选择"
+        "name": "进出门消息显示功能选择"
       },
       {
         "deviceId": 3,
@@ -38,6 +39,10 @@ export class DevicePage {
       {
         "deviceId": 4,
         "name": "网络连接检测"
+      },
+      {
+        "deviceId": 5,
+        "name": "消息传递方式设置"
       }
     ];
   }
@@ -55,8 +60,8 @@ export class DevicePage {
       this.navCtrl.push(AdditionalBeepSettingsPage);
     } else if (deviceId == 4) {
       this.navCtrl.push(NetworkConnectionDetectionPage);
+    } else if (deviceId == 5) {
+      this.navCtrl.push(MessagingMethodSettingsPage);
     }
-
   }
-
 }
