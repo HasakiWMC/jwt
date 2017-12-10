@@ -23,6 +23,7 @@ import { AuthHttp, AuthModule, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'a
 import { HttpModule, Http, Headers } from '@angular/http';
 
 import { WelcomePage } from '../pages/welcome/welcome';
+import { WelcomePageModule } from '../pages/welcome/welcome.module';
 import { LoginPage } from '../pages/login/login';
 
 import { ThiefWarningPage } from '../pages/thief-warning/thief-warning';
@@ -76,13 +77,14 @@ export function provideSettings(storage: Storage) {
     LockFeatureConfirmPage,
     InOrOutDisplayFunctionSelectionPage,
     AdditionalBeepSettingsPage,
-    NetworkConnectionDetectionPage
+    NetworkConnectionDetectionPage,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     HttpModule,
     AuthModule,
+    WelcomePageModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -108,7 +110,8 @@ export function provideSettings(storage: Storage) {
     LockFeatureConfirmPage,
     InOrOutDisplayFunctionSelectionPage,
     AdditionalBeepSettingsPage,
-    NetworkConnectionDetectionPage
+    NetworkConnectionDetectionPage,
+    WelcomePage
   ],
   providers: [
     Api,
