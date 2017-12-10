@@ -16,8 +16,8 @@ export class SignupPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { username: string, email: string, password: string, passwordAgain: string } = {
-    username: '',
+  account: { phone: string, email: string, password: string, passwordAgain: string } = {
+    phone: '',
     email: '',
     password: '',
     passwordAgain: ''
@@ -55,7 +55,7 @@ export class SignupPage {
         console.log(status);
       }
       if (status == true) {
-        localStorage.setItem('username', this.account.username)
+        localStorage.setItem('username', this.account.phone)
 
         this.navCtrl.push(LoginPage);
 
@@ -90,7 +90,7 @@ export class SignupPage {
 
   validateInput() {
     var isCorrect = true;
-    if (this.account.username == "" || this.account.email == "" || this.account.password == "" || this.account.passwordAgain == "") {
+    if (this.account.phone == "" || this.account.password == "" || this.account.passwordAgain == "") {
       this.signupErrorString = "输入不能为空"
       isCorrect = false;
     } else if (this.account.password != this.account.passwordAgain) {

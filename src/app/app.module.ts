@@ -25,6 +25,7 @@ import { HttpModule, Http, Headers } from '@angular/http';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { WelcomePageModule } from '../pages/welcome/welcome.module';
 import { LoginPage } from '../pages/login/login';
+import { LoginPageModule } from '../pages/login/login.module';
 
 import { ThiefWarningPage } from '../pages/thief-warning/thief-warning';
 import { ThiefWarningHistoryPage } from '../pages/thief-warning-history/thief-warning-history';
@@ -87,6 +88,7 @@ export function provideSettings(storage: Storage) {
     HttpModule,
     AuthModule,
     WelcomePageModule,
+    LoginPageModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -114,6 +116,7 @@ export function provideSettings(storage: Storage) {
     AdditionalBeepSettingsPage,
     NetworkConnectionDetectionPage,
     WelcomePage,
+    LoginPage,
     MessagingMethodSettingsPage
   ],
   providers: [
