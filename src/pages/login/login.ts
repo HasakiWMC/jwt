@@ -66,6 +66,7 @@ export class LoginPage {
       var res = resp.json();
       if (res['access_token']) {
         localStorage.setItem('token', res['access_token'])
+        localStorage.setItem('username', this.account.username)
       }
       let toast = this.toastCtrl.create({
         message: this.loginSuccessString,

@@ -28,7 +28,6 @@ export class AccountPage {
 
   logOut() {
     localStorage.removeItem('token');
-    localStorage.removeItem('username');
     let modal = this.modalCtrl.create(WelcomePage);
     modal.present();
   }
