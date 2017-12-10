@@ -1,9 +1,3 @@
-<!--
-  Generated template for the MessagingMethodSettingsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -13,6 +7,41 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-list radio-group [(ngModel)]="methodItem">
+    <ion-list-header>
+      进出门消息传递方式
+    </ion-list-header>
+    <ion-item>
+      <ion-label>嘟声</ion-label>
+      <ion-radio value="1"></ion-radio>
+    </ion-item>
 
+    <ion-item>
+      <ion-label>铃声</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>振动</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>振铃</ion-label>
+      <ion-radio value="4"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <div style="margin-left: 15px; margin-right: 15px;">
+    <label>说明：</label>
+    <br>
+    <label>1.“盗警”和“钥匙遗忘拔出报警”消息传递方式绑定用“振铃”，“出入门”消息传递方式由用户设置</label>
+    <br>
+    <label>2.若用户不设置，设备默认为“嘟声”</label>
+  </div>
+
+  <div padding>
+    <button ion-button block (click)="save()">{{ 'CONFIRM_BUTTON' | translate }}</button>
+  </div>
 </ion-content>
