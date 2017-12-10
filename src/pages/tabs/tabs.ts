@@ -84,6 +84,27 @@ export class TabsPage {
       if ("warn" == event['alert']) {
         that.vibrationAndMedia()
       }
+      if ("prompt" == event['alert']) {
+        var methodItem = localStorage.getItem('methodItem');
+        if (methodItem == null) {
+          console.log("null")
+        } else {
+          switch (methodItem) {
+            case '1':
+              console.log("1111")
+              break;
+            case '2':
+              console.log("2222")
+              break;
+            case '3':
+              console.log("3333")
+              break;
+            case '4':
+              console.log("4444")
+          }
+
+        }
+      }
     }, false)
 
     document.addEventListener("jpush.openNotification", function (event) {
@@ -94,10 +115,7 @@ export class TabsPage {
     document.addEventListener("jpush.setTagsWithAlias", function (event) {
       console.log("setTagsWithAlias");
     }, false)
-
-
   }
-
 
   media() {
     this.nativeAudio.play('uniqueId1').then(function () {

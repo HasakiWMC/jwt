@@ -17,7 +17,12 @@ export class MessagingMethodSettingsPage {
   methodItem: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.methodItem = 1
+    if (localStorage.getItem('methodItem') == null) {
+      this.methodItem = 1
+    }
+    else {
+      this.methodItem = localStorage.getItem('methodItem')
+    }
   }
 
   ionViewDidLoad() {
@@ -26,5 +31,6 @@ export class MessagingMethodSettingsPage {
 
   save() {
     console.log(this.methodItem)
+    localStorage.setItem('methodItem', this.methodItem)
   }
 }
