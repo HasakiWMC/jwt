@@ -34,7 +34,8 @@ export class MessagingMethodSettingsPage {
     localStorage.setItem('methodItem', this.methodItem)
     let toast = this.toastCtrl.create({
       message: '保存成功',
-      duration: 1000
+      duration: 1000,
+      position: 'middle'
     });
     toast.present();
   }
