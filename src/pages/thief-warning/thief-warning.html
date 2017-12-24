@@ -18,7 +18,8 @@
     <ion-item-sliding *ngFor="let item of thiefWarningItems">
       <button ion-item (click)="openItem(item.thiefWarningId)">
         <ion-avatar item-start>
-          <img [src]="profilePic" class="warn_circle" style="width:15px; height:15px;" *ngIf="item.hasSignal" />
+          <img [src]="profilePic" class="warn_circle" style="width:15px; height:15px;"
+               *ngIf="item.hasSignal == 'true'"/>
         </ion-avatar>
         <h2>{{item.name}}</h2>
         <p>{{item.time}}</p>
@@ -29,6 +30,7 @@
   </ion-list>
 
   <div padding>
-    <button ion-button block (click)="queryThiefWarningHistory()">{{ 'Query_ThiefWarning_History' | translate }}</button>
+    <button ion-button block (click)="queryThiefWarningHistory()">{{ 'Query_ThiefWarning_History' | translate }}
+    </button>
   </div>
 </ion-content>

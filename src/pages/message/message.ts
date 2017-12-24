@@ -37,6 +37,8 @@ export class MessagePage {
       }
     ];
     // this.msgItems = this.items.query();
+
+    localStorage.setItem("signalThiefWarningLog_" + 1,"true");
   }
 
   ionViewDidLoad() {

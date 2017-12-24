@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ThiefWarningHistoryPage } from '../thief-warning-history/thief-warning-history';
-import { ThiefFakeKeyPage } from '../thief-fake-key/thief-fake-key';
-import { ThiefDemolitionLockCorePage } from '../thief-demolition-lock-core/thief-demolition-lock-core'
-import { ThiefPryDoorPage } from '../thief-pry-door/thief-pry-door'
-import { Api } from '../../providers/api/api';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {ThiefWarningHistoryPage} from '../thief-warning-history/thief-warning-history';
+import {ThiefFakeKeyPage} from '../thief-fake-key/thief-fake-key';
+import {ThiefDemolitionLockCorePage} from '../thief-demolition-lock-core/thief-demolition-lock-core'
+import {ThiefPryDoorPage} from '../thief-pry-door/thief-pry-door'
+import {Api} from '../../providers/api/api';
 
 /**
  * Generated class for the ThiefWarningPage page.
@@ -39,6 +39,7 @@ export class ThiefWarningPage {
   }
 
   openItem(thiefWarningId: number) {
+    localStorage.setItem("signalThiefWarningLog_" + thiefWarningId,"false");
     if (thiefWarningId == 1) {
       this.navCtrl.push(ThiefFakeKeyPage);
     } else if (thiefWarningId == 2) {
@@ -74,7 +75,7 @@ export class ThiefWarningPage {
       var warning_log = res[i]['warning_log']
       item['thiefWarningId'] = warning_log
       item['time'] = res[i]['create_time']
-      item['hasSignal'] = true
+      item['hasSignal'] = localStorage.getItem("signalThiefWarningLog_" + warning_log);
       switch (warning_log) {
         case 1:
           item['name'] = "盗贼假钥匙开锁报警";
