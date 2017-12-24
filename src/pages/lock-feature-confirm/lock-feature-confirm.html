@@ -8,18 +8,32 @@
 
 
 <ion-content>
-  <ion-item>
-    <label item-left>锁具有室内快开功能</label>
-    <ion-toggle></ion-toggle>
-  </ion-item>
+  <ion-list radio-group [(ngModel)]="lockFeatureItem">
+    <ion-list-header>
+      现有锁具特征确认
+    </ion-list-header>
+    <ion-item>
+      <ion-label>普通钥匙型</ion-label>
+      <ion-radio value="1"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>执手开关型（双快型）</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+  </ion-list>
 
   <div style="margin-left: 15px; margin-right: 15px;">
-    <label>说明：锁具有快开和非快开两种。。。。。。。一种具有快开功能，另一种就没有那个快开功能的了</label>
+    <label>说明：</label>
+    <br>
+    <label>1.现有锁具室内开关门有“普通钥匙型”与“执手开关型---双快型”，锁具不同设备程序处理不同，用户必须确认</label>
+    <br>
+    <label>2.若用户对现有锁具特征不确认，设备默认为“普通钥匙型”</label>
   </div>
 
 
 
   <div padding>
-    <button ion-button color="primary" block>{{ 'CONFIRM_BUTTON' | translate }}</button>
+    <button ion-button color="primary" block (click)="save()">{{ 'CONFIRM_BUTTON' | translate }}</button>
   </div>
 </ion-content>
