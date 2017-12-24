@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController  } from 'ionic-angular';
 
 /**
  * Generated class for the MessagingMethodSettingsPage page.
@@ -16,7 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class MessagingMethodSettingsPage {
   methodItem: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public toastCtrl: ToastController) {
     if (localStorage.getItem('methodItem') == null) {
       this.methodItem = 1
     }
@@ -32,5 +32,10 @@ export class MessagingMethodSettingsPage {
   save() {
     console.log(this.methodItem)
     localStorage.setItem('methodItem', this.methodItem)
+    let toast = this.toastCtrl.create({
+      message: '保存成功',
+      duration: 1000
+    });
+    toast.present();
   }
 }
