@@ -5,10 +5,10 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    ThiefPryDoorPage,
+    // ThiefPryDoorPage,
   ],
   imports: [
-    IonicPageModule.forChild(ThiefPryDoorPage),
+    // IonicPageModule.forChild(ThiefPryDoorPage),
     TranslateModule.forChild()
   ],
 })

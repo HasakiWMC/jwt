@@ -5,10 +5,10 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    PersonInOrOutDoorHistoryPage,
+    // PersonInOrOutDoorHistoryPage,
   ],
   imports: [
-    IonicPageModule.forChild(PersonInOrOutDoorHistoryPage),
+    // IonicPageModule.forChild(PersonInOrOutDoorHistoryPage),
     TranslateModule.forChild()
   ],
 })

@@ -4,10 +4,10 @@ import { NetworkConnectionDetectionPage } from './network-connection-detection';
 
 @NgModule({
   declarations: [
-    NetworkConnectionDetectionPage,
+    // NetworkConnectionDetectionPage,
   ],
   imports: [
-    IonicPageModule.forChild(NetworkConnectionDetectionPage),
+    // IonicPageModule.forChild(NetworkConnectionDetectionPage),
   ],
 })
 export class NetworkConnectionDetectionPageModule {}

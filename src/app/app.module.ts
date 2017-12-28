@@ -1,47 +1,47 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { Camera } from '@ionic-native/camera';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
-import { IonicStorageModule, Storage } from '@ionic/storage';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { BackButtonService } from "../services/backButton.service";
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {ErrorHandler, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {Camera} from '@ionic-native/camera';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {StatusBar} from '@ionic-native/status-bar';
+import {IonicStorageModule, Storage} from '@ionic/storage';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import {BackButtonService} from "../services/backButton.service";
 
-import { JPush } from 'ionic3-jpush';
-import { NativeAudio } from '@ionic-native/native-audio';
+import {JPush} from 'ionic3-jpush';
+import {NativeAudio} from '@ionic-native/native-audio';
 
-import { Items } from '../mocks/providers/items';
-import { Settings } from '../providers/providers';
-import { User } from '../providers/providers';
-import { Api } from '../providers/providers';
-import { MyApp } from './app.component';
+import {Items} from '../mocks/providers/items';
+import {Settings} from '../providers/providers';
+import {User} from '../providers/providers';
+import {Api} from '../providers/providers';
+import {MyApp} from './app.component';
 
-import { AuthHttp, AuthModule, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
-import { HttpModule, Http, Headers } from '@angular/http';
+import {AuthHttp, AuthModule, AuthConfig, AUTH_PROVIDERS, provideAuth} from 'angular2-jwt';
+import {HttpModule, Http, Headers} from '@angular/http';
 
-import { WelcomePage } from '../pages/welcome/welcome';
-import { WelcomePageModule } from '../pages/welcome/welcome.module';
-import { LoginPage } from '../pages/login/login';
-import { LoginPageModule } from '../pages/login/login.module';
+import {WelcomePage} from '../pages/welcome/welcome';
+import {WelcomePageModule} from '../pages/welcome/welcome.module';
+import {LoginPage} from '../pages/login/login';
+import {LoginPageModule} from '../pages/login/login.module';
 
-import { ThiefWarningPage } from '../pages/thief-warning/thief-warning';
-import { ThiefWarningHistoryPage } from '../pages/thief-warning-history/thief-warning-history';
-import { ThiefFakeKeyPage } from '../pages/thief-fake-key/thief-fake-key';
-import { ThiefDemolitionLockCorePage } from '../pages/thief-demolition-lock-core/thief-demolition-lock-core';
-import { ThiefPryDoorPage } from '../pages/thief-pry-door/thief-pry-door';
-import { KeyForgetWarningPage } from '../pages/key-forget-warning/key-forget-warning';
-import { PersonInOrOutDoorPage } from '../pages/person-in-or-out-door/person-in-or-out-door';
-import { KeyForgetWarningHistoryPage } from '../pages/key-forget-warning-history/key-forget-warning-history';
-import { PersonInOrOutDoorHistoryPage } from '../pages/person-in-or-out-door-history/person-in-or-out-door-history';
+import {ThiefWarningPage} from '../pages/thief-warning/thief-warning';
+import {ThiefWarningHistoryPage} from '../pages/thief-warning-history/thief-warning-history';
+import {ThiefFakeKeyPage} from '../pages/thief-fake-key/thief-fake-key';
+import {ThiefDemolitionLockCorePage} from '../pages/thief-demolition-lock-core/thief-demolition-lock-core';
+import {ThiefPryDoorPage} from '../pages/thief-pry-door/thief-pry-door';
+import {KeyForgetWarningPage} from '../pages/key-forget-warning/key-forget-warning';
+import {PersonInOrOutDoorPage} from '../pages/person-in-or-out-door/person-in-or-out-door';
+import {KeyForgetWarningHistoryPage} from '../pages/key-forget-warning-history/key-forget-warning-history';
+import {PersonInOrOutDoorHistoryPage} from '../pages/person-in-or-out-door-history/person-in-or-out-door-history';
 
-import { LockFeatureConfirmPage } from '../pages/lock-feature-confirm/lock-feature-confirm'
-import { InOrOutDisplayFunctionSelectionPage } from '../pages/in-or-out-display-function-selection/in-or-out-display-function-selection'
-import { AdditionalBeepSettingsPage } from '../pages/additional-beep-settings/additional-beep-settings'
-import { NetworkConnectionDetectionPage } from '../pages/network-connection-detection/network-connection-detection'
-import { MessagingMethodSettingsPage } from '../pages/messaging-method-settings/messaging-method-settings'
+import {LockFeatureConfirmPage} from '../pages/lock-feature-confirm/lock-feature-confirm'
+import {InOrOutDisplayFunctionSelectionPage} from '../pages/in-or-out-display-function-selection/in-or-out-display-function-selection'
+import {AdditionalBeepSettingsPage} from '../pages/additional-beep-settings/additional-beep-settings'
+import {NetworkConnectionDetectionPage} from '../pages/network-connection-detection/network-connection-detection'
+import {MessagingMethodSettingsPage} from '../pages/messaging-method-settings/messaging-method-settings'
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -62,6 +62,17 @@ export function provideSettings(storage: Storage) {
     option3: '3',
     option4: 'Hello'
   });
+}
+
+export function getAuthHttp(http) {
+  return new AuthHttp(new AuthConfig({
+    headerName: 'Authorization',
+    headerPrefix: 'jwt',
+    tokenName: 'token',
+    tokenGetter: (() => localStorage.getItem('token')),
+    globalHeaders: [{'Content-Type': 'application/json'}],
+    noJwtError: true
+  }), http);
 }
 
 @NgModule({
@@ -86,7 +97,7 @@ export function provideSettings(storage: Storage) {
     BrowserModule,
     HttpClientModule,
     HttpModule,
-    AuthModule,
+    // AuthModule,
     WelcomePageModule,
     LoginPageModule,
     TranslateModule.forRoot({
@@ -130,17 +141,15 @@ export function provideSettings(storage: Storage) {
     AuthHttp,
     JPush,
     BackButtonService,
-    provideAuth({
-      headerName: 'Authorization',
-      headerPrefix: 'jwt',
-      tokenName: 'token',
-      tokenGetter: (() => localStorage.getItem('token')),
-      globalHeaders: [{ 'Content-Type': 'application/json' }],
-      noJwtError: true
-    }),
-    { provide: Settings, useFactory: provideSettings, deps: [Http, Storage] },
+    {
+      provide: AuthHttp,
+      useFactory: getAuthHttp,
+      deps: [Http, Storage]
+    },
+    {provide: Settings, useFactory: provideSettings, deps: [Http, Storage]},
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule { }
+export class AppModule {
+}

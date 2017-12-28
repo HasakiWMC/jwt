@@ -5,10 +5,10 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    KeyForgetWarningPage,
+    // KeyForgetWarningPage,
   ],
   imports: [
-    IonicPageModule.forChild(KeyForgetWarningPage),
+    // IonicPageModule.forChild(KeyForgetWarningPage),
     TranslateModule.forChild()
   ],
 })

@@ -4,10 +4,10 @@ import { MessagingMethodSettingsPage } from './messaging-method-settings';
 
 @NgModule({
   declarations: [
-    MessagingMethodSettingsPage,
+    // MessagingMethodSettingsPage,
   ],
   imports: [
-    IonicPageModule.forChild(MessagingMethodSettingsPage),
+    // IonicPageModule.forChild(MessagingMethodSettingsPage),
   ],
 })
 export class MessagingMethodSettingsPageModule {}
