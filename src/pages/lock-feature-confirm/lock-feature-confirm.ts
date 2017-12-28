@@ -34,7 +34,7 @@ export class LockFeatureConfirmPage {
     let toast = this.toastCtrl.create({
       message: '保存成功',
       duration: 1000,
-      position: 'middle'
+      position: 'top'
     });
     toast.present();
   }
