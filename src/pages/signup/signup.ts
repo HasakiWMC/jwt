@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {IonicPage, NavController, ToastController} from 'ionic-angular';
 
-import { User } from '../../providers/providers';
-import { MainPage } from '../pages';
-import { WelcomePage } from '../welcome/welcome';
-import { LoginPage } from '../login/login';
+import {User} from '../../providers/providers';
+import {MainPage} from '../pages';
+import {WelcomePage} from '../welcome/welcome';
+import {LoginPage} from '../login/login';
 
 @IonicPage()
 @Component({
@@ -27,9 +27,9 @@ export class SignupPage {
   private signupErrorString: string;
 
   constructor(public navCtrl: NavController,
-    public user: User,
-    public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+              public user: User,
+              public toastCtrl: ToastController,
+              public translateService: TranslateService) {
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
@@ -89,9 +89,14 @@ export class SignupPage {
   }
 
   validateInput() {
-    var isCorrect = true;
+    let isCorrect = true;
+    let phonePattern = /^(13|14|15|17|18|19)[0-9]{9}$/.test(this.account.phone);
+    console.log(phonePattern);
     if (this.account.phone == "" || this.account.password == "" || this.account.passwordAgain == "") {
       this.signupErrorString = "输入不能为空"
+      isCorrect = false;
+    } else if (!phonePattern) {
+      this.signupErrorString = "手机号码不符合规则"
       isCorrect = false;
     } else if (this.account.password != this.account.passwordAgain) {
       this.signupErrorString = "两次密码不一致"
