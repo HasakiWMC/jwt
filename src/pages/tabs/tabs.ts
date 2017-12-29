@@ -14,6 +14,7 @@ import { TestingRoot } from '../pages';
 
 import { NativeAudio } from '@ionic-native/native-audio';
 import { JPush } from 'ionic3-jpush';
+import {User} from '../../providers/providers';
 
 
 @IonicPage()
@@ -49,7 +50,8 @@ export class TabsPage {
     private platform: Platform,
     public backButtonService: BackButtonService,
     private jPush: JPush,
-    private nativeAudio: NativeAudio
+    private nativeAudio: NativeAudio,
+    public user: User,
   ) {
     translateService.get(['TAB1_TITLE', 'TAB2_TITLE', 'TAB3_TITLE', 'TAB4_TITLE', 'MSG_TITLE', 'DEVICE_TITLE', 'ACCOUNT_TITLE', 'TEST_TITLE']).subscribe(values => {
       this.tab1Title = values['TAB1_TITLE'];
@@ -66,14 +68,16 @@ export class TabsPage {
       this.backButtonService.registerBackButtonAction(this.tabRef);
     });
 
+    this.jPush.init();
+    this.setAlias();
+
     this.nativeAudio.preloadSimple('uniqueId1', 'assets/media/braveShine_clip.mp3').then(function () {
       console.log('success')
     }, function (err) {
       console.log(err)
     });
 
-    this.jPush.init();
-    var that = this;
+    let that = this;
 
     document.addEventListener("jpush.receiveMessage", function (event) {
       console.log("receiveMessage");
@@ -122,6 +126,22 @@ export class TabsPage {
       console.log('success')
     }, function (err) {
       console.log(err)
+    });
+  }
+
+  setAlias() {
+    this.user.user().subscribe((resp2) => {
+      let res2 = resp2.json();
+      let alias = 'smartLocker_' + res2['data']['id'];
+      this.jPush.setAlias({sequence: 1, alias: alias}).then(function (result) {
+        console.log("set the alias!")
+      }, function (error) {
+        let sequence = error.sequence;
+        console.log(sequence)
+      });
+      console.log(alias);
+    }, (err2) => {
+      console.error("get alias err")
     });
   }
 

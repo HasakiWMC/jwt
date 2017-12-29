@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { WelcomePage } from '../welcome/welcome'
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
+import {WelcomePage} from '../welcome/welcome'
+
+import {JPush} from 'ionic3-jpush';
 
 /**
  * Generated class for the AccountPage page.
@@ -16,10 +18,10 @@ import { WelcomePage } from '../welcome/welcome'
 })
 export class AccountPage {
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public modalCtrl: ModalController,
+              private jPush: JPush,) {
   }
 
   ionViewDidLoad() {
@@ -28,6 +30,13 @@ export class AccountPage {
 
   logOut() {
     localStorage.removeItem('token');
+    this.jPush.deleteAlias({sequence: 1}).then(function (result) {
+      console.log("delete the alias!")
+    }, function (error) {
+      let sequence = error.sequence;
+      console.log(sequence)
+    });
+
     let modal = this.modalCtrl.create(WelcomePage);
     modal.present();
   }

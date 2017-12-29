@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, ModalController, ToastController} from 'ionic-angular';
 
-import { Item } from '../../models/item';
-import { Items } from '../../providers/providers';
+import {Items} from '../../providers/providers';
 
-import { ThiefWarningPage } from '../thief-warning/thief-warning';
-import { KeyForgetWarningPage } from '../key-forget-warning/key-forget-warning';
-import { PersonInOrOutDoorPage } from '../person-in-or-out-door/person-in-or-out-door';
+import {ThiefWarningPage} from '../thief-warning/thief-warning';
+import {KeyForgetWarningPage} from '../key-forget-warning/key-forget-warning';
+import {PersonInOrOutDoorPage} from '../person-in-or-out-door/person-in-or-out-door';
+import {User} from '../../providers/providers';
+
+import {JPush} from 'ionic3-jpush';
 
 @IonicPage()
 @Component({
@@ -15,9 +17,17 @@ import { PersonInOrOutDoorPage } from '../person-in-or-out-door/person-in-or-out
 })
 export class MessagePage {
   msgItems: any[];
-  profilePic: any
+  profilePic: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public items: Items, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public items: Items,
+              public modalCtrl: ModalController,
+              private jPush: JPush,
+              public toastCtrl: ToastController,
+              public user: User,) {
+
+
     this.profilePic = "assets/img/warn.png";
     this.msgItems = [
       {
@@ -36,14 +46,15 @@ export class MessagePage {
         "hasSignal": false
       }
     ];
-    // this.msgItems = this.items.query();
 
-    localStorage.setItem("signalThiefWarningLog_" + 1,"true");
+    localStorage.setItem("signalThiefWarningLog_" + 1, "true");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessagePage');
   }
+
+
 
   openItem(msgId: number) {
     if (msgId == 1) {

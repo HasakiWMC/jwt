@@ -1,15 +1,13 @@
-import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController, ModalController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {IonicPage, NavController, ToastController, ModalController} from 'ionic-angular';
 
-import { User } from '../../providers/providers';
-import { MainPage } from '../pages';
-import { WelcomePage } from '../welcome/welcome';
+import {User} from '../../providers/providers';
+import {MainPage} from '../pages';
+import {WelcomePage} from '../welcome/welcome';
 
-import { Platform } from 'ionic-angular';
-import { BackButtonService } from "../../services/backButton.service";
-import { JPush } from 'ionic3-jpush';
-
+import {Platform} from 'ionic-angular';
+import {BackButtonService} from "../../services/backButton.service";
 
 
 @IonicPage()
@@ -30,16 +28,14 @@ export class LoginPage {
   private loginErrorString: string;
   private loginSuccessString: string;
 
-  constructor(
-    public modalCtrl: ModalController,
-    public navCtrl: NavController,
-    public user: User,
-    public toastCtrl: ToastController,
-    public translateService: TranslateService,
-    private platform: Platform,
-    private backButtonService: BackButtonService,
-    private jPush: JPush,
-  ) {
+  constructor(public modalCtrl: ModalController,
+              public navCtrl: NavController,
+              public user: User,
+              public toastCtrl: ToastController,
+              public translateService: TranslateService,
+              private platform: Platform,
+              private backButtonService: BackButtonService,
+              ) {
     platform.ready().then(() => {
       this.backButtonService.registerBackButtonAction(null);
     });
@@ -58,7 +54,7 @@ export class LoginPage {
   // Attempt to login in through our User service
   doLogin() {
     this.user.login(this.account).subscribe((resp) => {
-      var res = resp.json();
+      let res = resp.json();
       if (res['access_token']) {
         localStorage.setItem('token', res['access_token'])
         localStorage.setItem('username', this.account.username)
@@ -72,9 +68,6 @@ export class LoginPage {
       let modal = this.modalCtrl.create(MainPage);
       modal.present();
 
-
-      this.setAlias();
-
     }, (err) => {
       this.navCtrl.push(WelcomePage);
       // Unable to log in
@@ -87,20 +80,5 @@ export class LoginPage {
     });
   }
 
-  setAlias() {
-    this.user.user().subscribe((resp2) => {
-      var res2 = resp2.json();
-      var alias = 'smartLocker_' + res2['data']['id']
-      console.log(alias)
-      this.jPush.setAlias({ sequence: 1, alias: alias }).then(function (result) {
-
-      }, function (error) {
-        var sequence = error.sequence
-
-      })
-    }, (err2) => {
-      console.error("get alias err")
-    });
-  }
 
 }
