@@ -8,8 +8,6 @@ import {KeyForgetWarningPage} from '../key-forget-warning/key-forget-warning';
 import {PersonInOrOutDoorPage} from '../person-in-or-out-door/person-in-or-out-door';
 import {User} from '../../providers/providers';
 
-import {JPush} from 'ionic3-jpush';
-
 @IonicPage()
 @Component({
   selector: 'page-message',
@@ -23,7 +21,6 @@ export class MessagePage {
               public navParams: NavParams,
               public items: Items,
               public modalCtrl: ModalController,
-              private jPush: JPush,
               public toastCtrl: ToastController,
               public user: User,) {
 
@@ -64,6 +61,5 @@ export class MessagePage {
     } else if (msgId == 3) {
       this.navCtrl.push(PersonInOrOutDoorPage);
     }
-
   }
 }
