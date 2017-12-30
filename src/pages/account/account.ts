@@ -17,11 +17,15 @@ import {JPush} from 'ionic3-jpush';
   templateUrl: 'account.html',
 })
 export class AccountPage {
+  username: any;
+  alias: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public modalCtrl: ModalController,
               private jPush: JPush,) {
+    this.username = localStorage.getItem('username');
+    this.alias = localStorage.getItem('alias');
   }
 
   ionViewDidLoad() {
@@ -31,6 +35,7 @@ export class AccountPage {
   logOut() {
     localStorage.removeItem('token');
     this.jPush.deleteAlias({sequence: 1}).then(function (result) {
+      localStorage.removeItem('alias');
       console.log("delete the alias!")
     }, function (error) {
       let sequence = error.sequence;

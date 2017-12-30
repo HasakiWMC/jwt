@@ -138,6 +138,7 @@ export class TabsPage {
       let res2 = resp2.json();
       let alias = 'smartLocker_' + res2['data']['id'];
       this.jPush.setAlias({sequence: 1, alias: alias}).then(function (result) {
+        localStorage.setItem('alias', alias);
         console.log("set the alias!")
       }, function (error) {
         let sequence = error.sequence;
