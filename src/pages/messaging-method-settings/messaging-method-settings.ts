@@ -30,12 +30,12 @@ export class MessagingMethodSettingsPage {
   }
 
   save() {
-    console.log(this.methodItem)
-    localStorage.setItem('methodItem', this.methodItem)
+    console.log("methodItem = %s",this.methodItem);
+    localStorage.setItem('methodItem', this.methodItem);
     let toast = this.toastCtrl.create({
       message: '保存成功',
       duration: 1000,
-      position: 'middle'
+      position: 'top'
     });
     toast.present();
   }

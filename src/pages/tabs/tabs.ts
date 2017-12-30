@@ -1,19 +1,19 @@
-import { Component, ViewChild } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, Platform, Tabs } from 'ionic-angular';
-import { BackButtonService } from "../../services/backButton.service";
+import {Component, ViewChild} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {IonicPage, NavController, Platform, Tabs} from 'ionic-angular';
+import {BackButtonService} from "../../services/backButton.service";
 
-import { Tab1Root } from '../pages';
-import { Tab2Root } from '../pages';
-import { Tab3Root } from '../pages';
-import { Tab4Root } from '../pages';
-import { MessageRoot } from '../pages';
-import { DeviceRoot } from '../pages';
-import { AccountRoot } from '../pages';
-import { TestingRoot } from '../pages';
+import {Tab1Root} from '../pages';
+import {Tab2Root} from '../pages';
+import {Tab3Root} from '../pages';
+import {Tab4Root} from '../pages';
+import {MessageRoot} from '../pages';
+import {DeviceRoot} from '../pages';
+import {AccountRoot} from '../pages';
+import {TestingRoot} from '../pages';
 
-import { NativeAudio } from '@ionic-native/native-audio';
-import { JPush } from 'ionic3-jpush';
+import {NativeAudio} from '@ionic-native/native-audio';
+import {JPush} from 'ionic3-jpush';
 import {User} from '../../providers/providers';
 
 
@@ -44,15 +44,13 @@ export class TabsPage {
   testingTitle = " ";
 
 
-  constructor(
-    public navCtrl: NavController,
-    public translateService: TranslateService,
-    private platform: Platform,
-    public backButtonService: BackButtonService,
-    private jPush: JPush,
-    private nativeAudio: NativeAudio,
-    public user: User,
-  ) {
+  constructor(public navCtrl: NavController,
+              public translateService: TranslateService,
+              private platform: Platform,
+              public backButtonService: BackButtonService,
+              private jPush: JPush,
+              private nativeAudio: NativeAudio,
+              public user: User,) {
     translateService.get(['TAB1_TITLE', 'TAB2_TITLE', 'TAB3_TITLE', 'TAB4_TITLE', 'MSG_TITLE', 'DEVICE_TITLE', 'ACCOUNT_TITLE', 'TEST_TITLE']).subscribe(values => {
       this.tab1Title = values['TAB1_TITLE'];
       this.tab2Title = values['TAB2_TITLE'];
@@ -89,22 +87,28 @@ export class TabsPage {
         that.vibrationAndMedia()
       }
       if ("prompt" == event['alert']) {
-        var methodItem = localStorage.getItem('methodItem');
+        let methodItem = localStorage.getItem('methodItem');
         if (methodItem == null) {
           console.log("null")
         } else {
           switch (methodItem) {
             case '1':
-              console.log("1111")
               break;
             case '2':
-              console.log("2222")
+              that.media();
               break;
             case '3':
-              console.log("3333")
+              navigator.vibrate([
+                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
+                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000
+              ]);
               break;
             case '4':
-              console.log("4444")
+              that.vibrationAndMedia()
           }
 
         }
