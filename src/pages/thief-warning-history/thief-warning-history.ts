@@ -18,10 +18,28 @@ export class ThiefWarningHistoryPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.thiefWarningHistoryItems = navParams.get('thiefWarning');
+    this.warnId2WarnName();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ThiefWarningHistoryPage');
+  }
+
+  warnId2WarnName() {
+    for (let i = 0; i < this.thiefWarningHistoryItems.length; i++) {
+      let warning_log = this.thiefWarningHistoryItems[i]['thiefWarningId'];
+      switch (warning_log) {
+        case 1:
+          this.thiefWarningHistoryItems[i]['name'] = "盗贼假钥匙开锁报警";
+          break;
+        case 2:
+          this.thiefWarningHistoryItems[i]['name'] = "盗贼拆锁芯报警";
+          break;
+        case 3:
+          this.thiefWarningHistoryItems[i]['name'] = "盗贼撬门报警";
+          break;
+      }
+    }
   }
 
 }
