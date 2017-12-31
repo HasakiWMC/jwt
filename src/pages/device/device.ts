@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LockFeatureConfirmPage } from '../lock-feature-confirm/lock-feature-confirm'
-import { InOrOutDisplayFunctionSelectionPage } from '../in-or-out-display-function-selection/in-or-out-display-function-selection'
-import { AdditionalBeepSettingsPage } from '../additional-beep-settings/additional-beep-settings'
-import { NetworkConnectionDetectionPage } from '../network-connection-detection/network-connection-detection'
-import { MessagingMethodSettingsPage } from '../messaging-method-settings/messaging-method-settings'
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {LockFeatureConfirmPage} from '../lock-feature-confirm/lock-feature-confirm'
+import {InOrOutDisplayFunctionSelectionPage} from '../in-or-out-display-function-selection/in-or-out-display-function-selection'
+import {AdditionalBeepSettingsPage} from '../additional-beep-settings/additional-beep-settings'
+import {NetworkConnectionDetectionPage} from '../network-connection-detection/network-connection-detection'
+import {MessagingMethodSettingsPage} from '../messaging-method-settings/messaging-method-settings'
 
 
 /**
@@ -30,7 +30,7 @@ export class DevicePage {
       },
       {
         "deviceId": 2,
-        "name": "进出门消息显示功能选择"
+        "name": "出入门消息显示功能选择"
       },
       {
         "deviceId": 3,

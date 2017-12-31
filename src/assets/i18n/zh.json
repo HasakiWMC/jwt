@@ -62,12 +62,12 @@
   "ThiefWarningDemolitionLockCore_Title": "盗贼拆锁芯报警",
   "ThiefWarningPryDoor_Title": "盗贼撬门报警",
   "KeyForgetWarning_Title": "钥匙遗忘拔出报警",
-  "PersonInOrOutDoor_Title": "有人进出门",
+  "PersonInOrOutDoor_Title": "有人出入门",
   "Query_History": "查询历史记录",
   "KeyForgetWarningHistory_Title": "钥匙遗忘拔出历史记录",
-  "PersonInOrOutDoorHistory_Title": "有人进出门历史记录",
+  "PersonInOrOutDoorHistory_Title": "有人出入门历史记录",
   "LockFeatureConfirm_Title": "现有锁具特征确认",
-  "InOrOutDisplayFunctionSelection_Title": "进出门显示功能选择",
+  "InOrOutDisplayFunctionSelection_Title": "出入门显示功能选择",
   "AdditionalBeepSettings_Title": "附加提示音设置",
   "NetworkConnectionDetection_Title": "网络连接检测"
 }
