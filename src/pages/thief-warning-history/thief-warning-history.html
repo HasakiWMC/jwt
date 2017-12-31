@@ -23,5 +23,9 @@
       </button>
 
     </ion-item-sliding>
+
+    <button ion-item *ngIf="thiefWarningHistoryItems.length == 0">
+      <p>暂无记录</p>
+    </button>
   </ion-list>
 </ion-content>
