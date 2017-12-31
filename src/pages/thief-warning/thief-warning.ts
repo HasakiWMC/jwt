@@ -19,6 +19,7 @@ import {Api} from '../../providers/api/api';
   templateUrl: 'thief-warning.html',
 })
 export class ThiefWarningPage {
+  thiefWarning: any[];
   thiefFakeKey: any[];
   thiefDemolitionLockCore: any[];
   thiefPryDoor: any[];
@@ -46,9 +47,10 @@ export class ThiefWarningPage {
     console.log('ionViewDidLoad ThiefWarningPage');
   }
 
-
   queryThiefWarningHistory() {
-    this.navCtrl.push(ThiefWarningHistoryPage);
+    this.navCtrl.push(ThiefWarningHistoryPage, {
+      thiefWarning: this.thiefWarning
+    });
   }
 
   openItem(thiefWarningId: number) {
@@ -87,6 +89,7 @@ export class ThiefWarningPage {
   }
 
   convert2ThiefWarning(res: Array<any>) {
+    this.thiefWarning = [];
     this.thiefFakeKey = [];
     this.thiefDemolitionLockCore = [];
     this.thiefPryDoor = [];
@@ -107,6 +110,7 @@ export class ThiefWarningPage {
           this.thiefPryDoor.push(item);
           break;
       }
+      this.thiefWarning.push(item);
     }
     if (this.thiefFakeKey.length != 0) {
       this.thiefFakeKey_display = this.thiefFakeKey[this.thiefFakeKey.length - 1];
