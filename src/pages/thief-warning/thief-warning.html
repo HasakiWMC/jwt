@@ -15,14 +15,34 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let item of thiefWarningItems">
-      <button ion-item (click)="openItem(item.thiefWarningId)">
+    <ion-item-sliding>
+      <button ion-item (click)="openItem(1)">
         <ion-avatar item-start>
           <img [src]="profilePic" class="warn_circle" style="width:15px; height:15px;"
-               *ngIf="item.hasSignal == 'true'"/>
+               *ngIf="thiefFakeKey_display['hasSignal'] == 'true'"/>
         </ion-avatar>
-        <h2>{{item.name}}</h2>
-        <p>{{item.time}}</p>
+        <h2>盗贼假钥匙开锁报警</h2>
+        <p>{{thiefFakeKey_display.time}}</p>
+
+      </button>
+
+      <button ion-item (click)="openItem(2)">
+        <ion-avatar item-start>
+          <img [src]="profilePic" class="warn_circle" style="width:15px; height:15px;"
+               *ngIf="thiefDemolitionLockCore_display['hasSignal'] == 'true'"/>
+        </ion-avatar>
+        <h2>盗贼拆锁芯报警</h2>
+        <p>{{thiefDemolitionLockCore_display.time}}</p>
+
+      </button>
+
+      <button ion-item (click)="openItem(3)">
+        <ion-avatar item-start>
+          <img [src]="profilePic" class="warn_circle" style="width:15px; height:15px;"
+               *ngIf="thiefPryDoor_display['hasSignal'] == 'true'"/>
+        </ion-avatar>
+        <h2>盗贼撬门报警</h2>
+        <p>{{thiefPryDoor_display.time}}</p>
 
       </button>
 
