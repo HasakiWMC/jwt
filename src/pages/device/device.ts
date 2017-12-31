@@ -26,23 +26,28 @@ export class DevicePage {
     this.deviceItems = [
       {
         "deviceId": 1,
-        "name": "现有锁具特征确认"
+        "name": "现有锁具特征确认",
+        "profilePic": "assets/img/device/ios7-locked.png",
       },
       {
         "deviceId": 2,
-        "name": "出入门消息显示功能选择"
+        "name": "出入门消息显示功能选择",
+        "profilePic": "assets/img/device/ios7-home.png",
       },
       {
         "deviceId": 3,
-        "name": "附加提示音设置"
+        "name": "附加提示音设置",
+        "profilePic": "assets/img/device/android-volume.png",
       },
       {
         "deviceId": 4,
-        "name": "网络连接检测"
+        "name": "网络连接检测",
+        "profilePic": "assets/img/device/wifi.png",
       },
       {
         "deviceId": 5,
-        "name": "消息传递方式设置"
+        "name": "消息传递方式设置",
+        "profilePic": "assets/img/device/android-alarm.png",
       }
     ];
   }
