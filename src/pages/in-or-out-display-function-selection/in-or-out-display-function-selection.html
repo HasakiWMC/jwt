@@ -10,7 +10,7 @@
 <ion-content>
   <ion-item>
     <label item-left>出入门显示功能选择</label>
-    <ion-toggle></ion-toggle>
+    <ion-toggle [(ngModel)]="display" ></ion-toggle>
   </ion-item>
 
   <div style="margin-left: 15px; margin-right: 15px;">
@@ -24,6 +24,6 @@
 
 
   <div padding>
-    <button ion-button color="primary" block>{{ 'CONFIRM_BUTTON' | translate }}</button>
+    <button ion-button color="primary" block (click)="save()">{{ 'CONFIRM_BUTTON' | translate }}</button>
   </div>
 </ion-content>
