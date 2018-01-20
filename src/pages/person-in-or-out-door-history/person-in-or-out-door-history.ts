@@ -17,38 +17,7 @@ export class PersonInOrOutDoorHistoryPage {
   personInOrOutDoorItems: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.personInOrOutDoorItems = [
-      {
-        "thiefWarningId": 1,
-        "name": "有人出门",
-        "time": "2017年10月31日 下午10:47"
-      },
-      {
-        "thiefWarningId": 2,
-        "name": "有人进门",
-        "time": "2017年10月31日 下午10:47"
-      },
-      {
-        "thiefWarningId": 1,
-        "name": "有人出门",
-        "time": "2017年10月31日 下午10:47"
-      },
-      {
-        "thiefWarningId": 2,
-        "name": "有人进门",
-        "time": "2017年10月31日 下午10:47"
-      },
-      {
-        "thiefWarningId": 1,
-        "name": "有人出门",
-        "time": "2017年10月31日 下午10:47"
-      },
-      {
-        "thiefWarningId": 2,
-        "name": "有人进门",
-        "time": "2017年10月31日 下午10:47"
-      }
-    ];
+    this.personInOrOutDoorItems = navParams.get('personInOrOutDoorItems');
   }
 
   ionViewDidLoad() {

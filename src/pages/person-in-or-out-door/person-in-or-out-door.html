@@ -15,10 +15,15 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let item of personInOrOutDoorItems">
+    <ion-item-sliding>
       <button ion-item>
-        <h2>{{item.name}}</h2>
-        <p>{{item.time}}</p>
+        <h2>有人出门</h2>
+        <p>{{lastOutDoorTime}}</p>
+      </button>
+
+      <button ion-item>
+        <h2>有人进门</h2>
+        <p>{{lastInDoorTime}}</p>
 
       </button>
 
