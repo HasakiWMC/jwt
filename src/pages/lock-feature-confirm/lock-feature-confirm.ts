@@ -32,7 +32,6 @@ export class LockFeatureConfirmPage {
 
   save() {
     console.log(this.lockFeatureItem);
-    localStorage.setItem('lockFeatureItem', this.lockFeatureItem);
     this.setLockerFeature();
   }
 
@@ -45,6 +44,7 @@ export class LockFeatureConfirmPage {
       let res = resp.json();
       console.log(res);
       if (res['status'] == true) {
+        localStorage.setItem('lockFeatureItem', this.lockFeatureItem);
         let toast = this.toastCtrl.create({
           message: '保存成功',
           duration: 1000,
