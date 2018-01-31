@@ -83,10 +83,10 @@ export class TabsPage {
 
     document.addEventListener("jpush.receiveNotification", function (event) {
       console.log("receiveNotification");
-      if ("warn" == event['alert']) {
+      if (event['alert'] != null && event['alert'].indexOf("warn") >= 0) {
         that.vibrationAndMedia()
       }
-      if ("prompt" == event['alert']) {
+      if (event['alert'] != null && event['alert'].indexOf("prompt") >= 0) {
         let methodItem = localStorage.getItem('methodItem');
         if (methodItem == null) {
           console.log("null")

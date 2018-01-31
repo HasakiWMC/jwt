@@ -22,26 +22,26 @@ import {MyApp} from './app.component';
 import {AuthHttp, AuthModule, AuthConfig, AUTH_PROVIDERS, provideAuth} from 'angular2-jwt';
 import {HttpModule, Http, Headers} from '@angular/http';
 
-import {WelcomePage} from '../pages/welcome/welcome';
-import {WelcomePageModule} from '../pages/welcome/welcome.module';
-import {LoginPage} from '../pages/login/login';
-import {LoginPageModule} from '../pages/login/login.module';
+import {WelcomePage} from '../pages/loginTab/welcome/welcome';
+import {WelcomePageModule} from '../pages/loginTab/welcome/welcome.module';
+import {LoginPage} from '../pages/loginTab/login/login';
+import {LoginPageModule} from '../pages/loginTab/login/login.module';
 
-import {ThiefWarningPage} from '../pages/thief-warning/thief-warning';
-import {ThiefWarningHistoryPage} from '../pages/thief-warning-history/thief-warning-history';
-import {ThiefFakeKeyPage} from '../pages/thief-fake-key/thief-fake-key';
-import {ThiefDemolitionLockCorePage} from '../pages/thief-demolition-lock-core/thief-demolition-lock-core';
-import {ThiefPryDoorPage} from '../pages/thief-pry-door/thief-pry-door';
-import {KeyForgetWarningPage} from '../pages/key-forget-warning/key-forget-warning';
-import {PersonInOrOutDoorPage} from '../pages/person-in-or-out-door/person-in-or-out-door';
-import {KeyForgetWarningHistoryPage} from '../pages/key-forget-warning-history/key-forget-warning-history';
-import {PersonInOrOutDoorHistoryPage} from '../pages/person-in-or-out-door-history/person-in-or-out-door-history';
+import {ThiefWarningPage} from '../pages/messageTab/thief-warning/thief-warning';
+import {ThiefWarningHistoryPage} from '../pages/messageTab/thief-warning-history/thief-warning-history';
+import {ThiefFakeKeyPage} from '../pages/messageTab/thief-fake-key/thief-fake-key';
+import {ThiefDemolitionLockCorePage} from '../pages/messageTab/thief-demolition-lock-core/thief-demolition-lock-core';
+import {ThiefPryDoorPage} from '../pages/messageTab/thief-pry-door/thief-pry-door';
+import {KeyForgetWarningPage} from '../pages/messageTab/key-forget-warning/key-forget-warning';
+import {PersonInOrOutDoorPage} from '../pages/messageTab/person-in-or-out-door/person-in-or-out-door';
+import {KeyForgetWarningHistoryPage} from '../pages/messageTab/key-forget-warning-history/key-forget-warning-history';
+import {PersonInOrOutDoorHistoryPage} from '../pages/messageTab/person-in-or-out-door-history/person-in-or-out-door-history';
 
-import {LockFeatureConfirmPage} from '../pages/lock-feature-confirm/lock-feature-confirm'
-import {InOrOutDisplayFunctionSelectionPage} from '../pages/in-or-out-display-function-selection/in-or-out-display-function-selection'
-import {AdditionalBeepSettingsPage} from '../pages/additional-beep-settings/additional-beep-settings'
-import {NetworkConnectionDetectionPage} from '../pages/network-connection-detection/network-connection-detection'
-import {MessagingMethodSettingsPage} from '../pages/messaging-method-settings/messaging-method-settings'
+import {LockFeatureConfirmPage} from '../pages/deviceTab/lock-feature-confirm/lock-feature-confirm'
+import {InOrOutDisplayFunctionSelectionPage} from '../pages/deviceTab/in-or-out-display-function-selection/in-or-out-display-function-selection'
+import {AdditionalBeepSettingsPage} from '../pages/deviceTab/additional-beep-settings/additional-beep-settings'
+import {NetworkConnectionDetectionPage} from '../pages/deviceTab/network-connection-detection/network-connection-detection'
+import {MessagingMethodSettingsPage} from '../pages/deviceTab/messaging-method-settings/messaging-method-settings'
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
