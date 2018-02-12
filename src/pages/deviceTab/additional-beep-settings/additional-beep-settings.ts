@@ -75,7 +75,7 @@ export class AdditionalBeepSettingsPage {
       if (res['status'] == true) {
         localStorage.setItem('beepItem', '0');
         let toast = this.toastCtrl.create({
-          message: '取消成功',
+          message: '取消成功，请将单片机开关打开即可生效',
           duration: 1000,
           position: 'top'
         });
