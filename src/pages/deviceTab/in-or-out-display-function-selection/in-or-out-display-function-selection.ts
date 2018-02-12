@@ -46,7 +46,7 @@ export class InOrOutDisplayFunctionSelectionPage {
       if (res['status'] == true) {
         localStorage.setItem('display', String(this.display));
         let toast = this.toastCtrl.create({
-          message: '保存成功',
+          message: '保存成功，请将单片机开关打开即可生效',
           duration: 1000,
           position: 'top'
         });
