@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>产品绑定</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form (submit)="doBinding()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label fixed>产品序列号</ion-label>
+        <ion-input type="serial" [(ngModel)]="binding.serial" name="serial"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>产品密码</ion-label>
+        <ion-input type="password" [(ngModel)]="binding.password" name="password"></ion-input>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="primary" block>点击绑定</button>
+      </div>
+
+    </ion-list>
+  </form>
+</ion-content>

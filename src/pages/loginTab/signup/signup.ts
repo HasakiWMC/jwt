@@ -6,6 +6,7 @@ import {User} from '../../../providers/providers';
 import {MainPage} from '../../pages';
 import {WelcomePage} from '../welcome/welcome';
 import {LoginPage} from '../login/login';
+import {DeviceBindingPage} from '../../accountTab/device-binding/device-binding';
 
 @IonicPage()
 @Component({
@@ -55,16 +56,38 @@ export class SignupPage {
         console.log(status);
       }
       if (status == true) {
-        localStorage.setItem('username', this.account.phone)
+        //注册成功后直接进入登录态，且跳转到绑定界面
+        let newAccount = {
+          username: this.account.phone,
+          password: this.account.password
+        };
+        this.user.login(newAccount).subscribe((resp) => {
+          let res = resp.json();
+          if (res['access_token']) {
+            localStorage.setItem('token', res['access_token'])
+            localStorage.setItem('username', this.account.phone)
+          }
 
-        this.navCtrl.push(LoginPage);
+          this.navCtrl.push(DeviceBindingPage);
 
-        let toast = this.toastCtrl.create({
-          message: msg,
-          duration: 3000,
-          position: 'top'
+          let toast = this.toastCtrl.create({
+            message: "注册成功，请填写设备绑定信息",
+            duration: 3000,
+            position: 'top'
+          });
+          toast.present();
+
+        }, (err) => {
+          this.navCtrl.push(WelcomePage);
+          // Unable to log in
+          let toast = this.toastCtrl.create({
+            message: "注册后登录失败",
+            duration: 3000,
+            position: 'top'
+          });
+          toast.present();
         });
-        toast.present();
+
       } else {
         this.navCtrl.push(WelcomePage);
 
@@ -93,13 +116,13 @@ export class SignupPage {
     let phonePattern = /^(13|14|15|17|18|19)[0-9]{9}$/.test(this.account.phone);
     console.log(phonePattern);
     if (this.account.phone == "" || this.account.password == "" || this.account.passwordAgain == "") {
-      this.signupErrorString = "输入不能为空"
+      this.signupErrorString = "输入不能为空";
       isCorrect = false;
     } else if (!phonePattern) {
-      this.signupErrorString = "手机号码不符合规则"
+      this.signupErrorString = "手机号码不符合规则";
       isCorrect = false;
     } else if (this.account.password != this.account.passwordAgain) {
-      this.signupErrorString = "两次密码不一致"
+      this.signupErrorString = "两次密码不一致";
       isCorrect = false;
     }
     if (!isCorrect) {
@@ -114,4 +137,5 @@ export class SignupPage {
       return true;
     }
   }
+
 }
