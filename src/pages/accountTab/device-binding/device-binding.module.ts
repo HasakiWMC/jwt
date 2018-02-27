@@ -4,7 +4,7 @@ import { DeviceBindingPage } from './device-binding';
 
 @NgModule({
   declarations: [
-    DeviceBindingPage,
+    // DeviceBindingPage,
   ],
   imports: [
     IonicPageModule.forChild(DeviceBindingPage),
