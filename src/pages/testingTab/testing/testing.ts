@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NativeAudio } from '@ionic-native/native-audio';
-import { JPush } from 'ionic3-jpush';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {NativeAudio} from '@ionic-native/native-audio';
+import {JPush} from 'ionic3-jpush';
 
-import { User } from '../../../providers/providers';
+import {User} from '../../../providers/providers';
 
 /**
  * Generated class for the TestingPage page.
@@ -75,7 +75,7 @@ export class TestingPage {
 
   setAlias() {
     var that = this;
-    this.jPush.setAlias({ sequence: 1, alias: "smartLocker_3721" }).then(function (result) {
+    this.jPush.setAlias({sequence: 1, alias: "smartLocker_3721"}).then(function (result) {
       var sequence = result.sequence
       that.alias = result.alias
     }, function (error) {
@@ -86,7 +86,7 @@ export class TestingPage {
 
   getAlias() {
     var that = this;
-    this.jPush.getAlias({ sequence: 1 }).then(function (result) {
+    this.jPush.getAlias({sequence: 1}).then(function (result) {
       var sequence = result.sequence
       that.alias = result.alias
     }, function (error) {
@@ -94,4 +94,9 @@ export class TestingPage {
       that.alias = error.code
     })
   }
+
+  setThiefFakeKey_displayTrue() {
+    localStorage.setItem("signalThiefWarningLog_1", "true");
+  }
+
 }

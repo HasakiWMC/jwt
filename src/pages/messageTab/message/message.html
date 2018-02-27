@@ -10,12 +10,30 @@
 <ion-content>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let item of msgItems">
-      <button ion-item (click)="openItem(item.msgId)">
+    <ion-item-sliding>
+      <button ion-item (click)="openItem(1)">
         <ion-avatar item-start>
-          <img [src]="profilePic" class="warn_circle" style="width:15px; height:15px;" *ngIf="item.hasSignal" />
+          <img [src]="profilePic" class="warn_circle" style="width:15px; height:15px;" *ngIf="msgItems[0]['hasSignal'] == 'true'" />
         </ion-avatar>
-        <h2>{{item.name}}</h2>
+        <h2>{{msgItems[0].name}}</h2>
+        <!-- <p>{{item.about}}</p> -->
+
+      </button>
+
+      <button ion-item (click)="openItem(2)">
+        <ion-avatar item-start>
+          <img [src]="profilePic" class="warn_circle" style="width:15px; height:15px;" *ngIf="msgItems[1]['hasSignal'] == 'true'" />
+        </ion-avatar>
+        <h2>{{msgItems[1].name}}</h2>
+        <!-- <p>{{item.about}}</p> -->
+
+      </button>
+
+      <button ion-item (click)="openItem(3)">
+        <ion-avatar item-start>
+          <img [src]="profilePic" class="warn_circle" style="width:15px; height:15px;" *ngIf="msgItems[2]['hasSignal'] == 'true'" />
+        </ion-avatar>
+        <h2>{{msgItems[2].name}}</h2>
         <!-- <p>{{item.about}}</p> -->
 
       </button>

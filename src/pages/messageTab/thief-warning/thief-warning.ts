@@ -47,6 +47,13 @@ export class ThiefWarningPage {
     console.log('ionViewDidLoad ThiefWarningPage');
   }
 
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter ThiefWarningPage');
+    this.thiefFakeKey_display.hasSignal = localStorage.getItem("signalThiefWarningLog_1");
+    this.thiefDemolitionLockCore_display.hasSignal = localStorage.getItem("signalThiefWarningLog_2");
+    this.thiefPryDoor_display.hasSignal = localStorage.getItem("signalThiefWarningLog_3");
+  }
+
   queryThiefWarningHistory() {
     this.navCtrl.push(ThiefWarningHistoryPage, {
       thiefWarning: this.thiefWarning
@@ -122,4 +129,5 @@ export class ThiefWarningPage {
       this.thiefPryDoor_display = this.thiefPryDoor[this.thiefPryDoor.length - 1];
     }
   }
+
 }
