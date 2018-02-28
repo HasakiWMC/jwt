@@ -30,17 +30,17 @@ export class MessagePage {
       {
         "msgId": 1,
         "name": "有盗报警",
-        "hasSignal": localStorage.getItem("signalThiefWarningLog_1")
+        "hasSignal": localStorage.getItem("signalMessageItem_1")
       },
       {
         "msgId": 2,
         "name": "钥匙遗忘拔出报警",
-        "hasSignal": localStorage.getItem("signalThiefWarningLog_2")
+        "hasSignal": localStorage.getItem("signalMessageItem_2")
       },
       {
         "msgId": 3,
         "name": "有人出入门",
-        "hasSignal": localStorage.getItem("signalThiefWarningLog_3")
+        "hasSignal": localStorage.getItem("signalMessageItem_3")
       }
     ];
   }
@@ -57,12 +57,16 @@ export class MessagePage {
     let thiefDemolitionLockCore_display = localStorage.getItem("signalThiefWarningLog_2");
     let thiefPryDoor_display = localStorage.getItem("signalThiefWarningLog_3");
     if (thiefFakeKey_display != "true" && thiefDemolitionLockCore_display != "true" && thiefPryDoor_display != "true") {
-      localStorage.setItem("signalThiefWarningLog_1", "false");
+      localStorage.setItem("signalMessageItem_1", "false");
     } else {
-      localStorage.setItem("signalThiefWarningLog_1", "true");
+      localStorage.setItem("signalMessageItem_1", "true");
     }
-    this.msgItems[0]["hasSignal"] = localStorage.getItem("signalThiefWarningLog_1");
-    console.log(this.msgItems[0]["hasSignal"]);
+    this.msgItems[0]["hasSignal"] = localStorage.getItem("signalMessageItem_1");
+
+    this.msgItems[1]["hasSignal"] = localStorage.getItem("signalMessageItem_2");
+
+    this.msgItems[2]["hasSignal"] = localStorage.getItem("signalMessageItem_3");
+
   }
 
 
@@ -70,8 +74,10 @@ export class MessagePage {
     if (msgId == 1) {
       this.navCtrl.push(ThiefWarningPage);
     } else if (msgId == 2) {
+      localStorage.setItem("signalMessageItem_2", "false");
       this.navCtrl.push(KeyForgetWarningPage);
     } else if (msgId == 3) {
+      localStorage.setItem("signalMessageItem_3", "false");
       this.navCtrl.push(PersonInOrOutDoorPage);
     }
   }

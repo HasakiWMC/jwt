@@ -99,4 +99,21 @@ export class TestingPage {
     localStorage.setItem("signalThiefWarningLog_1", "true");
   }
 
+  setThiefDemolitionLockCore_displayTrue() {
+    localStorage.setItem("signalThiefWarningLog_2", "true");
+  }
+
+  setThiefPryDoor_displayTrue() {
+    localStorage.setItem("signalThiefWarningLog_3", "true");
+  }
+
+  setKeyForget_displayTrue() {
+    localStorage.setItem("signalMessageItem_2", "true");
+  }
+
+  setPersonInOrOutDoor_displayTrue() {
+    localStorage.setItem("signalMessageItem_3", "true");
+  }
+
+
 }
