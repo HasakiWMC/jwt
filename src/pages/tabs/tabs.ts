@@ -84,9 +84,20 @@ export class TabsPage {
     document.addEventListener("jpush.receiveNotification", function (event) {
       console.log("receiveNotification");
       if (event['alert'] != null && event['alert'].indexOf("warn") >= 0) {
-        that.vibrationAndMedia()
+        that.vibrationAndMedia();
+        let alert = event['alert'];
+        if (alert.indexOf("warn_1_1") >= 0) {
+          localStorage.setItem("signalThiefWarningLog_1", "true");
+        } else if (alert.indexOf("warn_1_2") >= 0) {
+          localStorage.setItem("signalThiefWarningLog_2", "true");
+        } else if (alert.indexOf("warn_1_3") >= 0) {
+          localStorage.setItem("signalThiefWarningLog_3", "true");
+        } else if (alert.indexOf("warn_2") >= 0) {
+          localStorage.setItem("signalMessageItem_2", "true");
+        }
       }
       if (event['alert'] != null && event['alert'].indexOf("prompt") >= 0) {
+        localStorage.setItem("signalMessageItem_3", "true");
         let methodItem = localStorage.getItem('methodItem');
         if (methodItem == null) {
           console.log("null")
@@ -108,12 +119,12 @@ export class TabsPage {
 
         }
       }
-    }, false)
+    }, false);
 
     document.addEventListener("jpush.openNotification", function (event) {
       console.log("openNotification");
       that.stopVibrationAndMedia()
-    }, false)
+    }, false);
 
     document.addEventListener("jpush.setTagsWithAlias", function (event) {
       console.log("setTagsWithAlias");
