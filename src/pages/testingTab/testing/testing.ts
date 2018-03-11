@@ -26,7 +26,7 @@ export class TestingPage {
               private nativeAudio: NativeAudio,
               private jPush: JPush,
               ) {
-    this.nativeAudio.preloadSimple('uniqueId1', 'assets/media/braveShine_clip.mp3').then(function () {
+    this.nativeAudio.preloadSimple('uniqueId1', 'assets/media/warn_clip.mp3').then(function () {
       console.log('success')
     }, function (err) {
       console.log(err)
@@ -59,12 +59,7 @@ export class TestingPage {
     this.media();
 
     navigator.vibrate([
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000
+      1000, 1000, 1000, 1000
     ]);
 
   }
@@ -90,12 +85,12 @@ export class TestingPage {
   }
 
   getAlias() {
-    var that = this;
+    let that = this;
     this.jPush.getAlias({sequence: 1}).then(function (result) {
-      var sequence = result.sequence
+      let sequence = result.sequence;
       that.alias = result.alias
     }, function (error) {
-      var sequence = error.sequence
+      let sequence = error.sequence;
       that.alias = error.code
     })
   }

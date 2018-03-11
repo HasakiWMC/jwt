@@ -69,7 +69,7 @@ export class TabsPage {
     this.jPush.init();
     this.setAlias();
 
-    this.nativeAudio.preloadSimple('uniqueId1', 'assets/media/braveShine_clip.mp3').then(function () {
+    this.nativeAudio.preloadSimple('uniqueId1', 'assets/media/warn_clip.mp3').then(function () {
       console.log('success')
     }, function (err) {
       console.log(err)
@@ -99,12 +99,7 @@ export class TabsPage {
               break;
             case '3':
               navigator.vibrate([
-                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-                1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000
+                1000, 1000, 1000, 1000
               ]);
               break;
             case '4':
@@ -153,12 +148,7 @@ export class TabsPage {
   vibrationAndMedia() {
     this.media();
     navigator.vibrate([
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000,
-      1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000
+      1000, 1000, 1000, 1000
     ]);
   }
 

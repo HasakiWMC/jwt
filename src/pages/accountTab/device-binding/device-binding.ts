@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Api} from '../../../providers/api/api';
+import {MainPage} from "../../pages";
 
 /**
  * Generated class for the DeviceBindingPage page.
@@ -24,7 +25,11 @@ export class DeviceBindingPage {
   private bindingErrorString: string;
   private bindingSuccessString: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public api: Api) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public toastCtrl: ToastController,
+              public api: Api,
+              public modalCtrl: ModalController) {
     this.bindingErrorString = "绑定失败";
     this.bindingSuccessString = "绑定成功"
   }
@@ -61,7 +66,8 @@ export class DeviceBindingPage {
     }, err => {
       console.error('ERROR', err);
     });
-    return seq;
+    let modal = this.modalCtrl.create(MainPage);
+    modal.present();
   }
 
 
