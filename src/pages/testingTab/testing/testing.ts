@@ -4,7 +4,7 @@ import {NativeAudio} from '@ionic-native/native-audio';
 import {JPush} from 'ionic3-jpush';
 
 import {User} from '../../../providers/providers';
-
+import {JSMS} from '@jiguang-ionic/jsms';
 /**
  * Generated class for the TestingPage page.
  *
@@ -21,12 +21,25 @@ export class TestingPage {
   alias: any;
 
 
-  constructor(public user: User, public navCtrl: NavController, public navParams: NavParams, private nativeAudio: NativeAudio, private jPush: JPush) {
+  constructor(public user: User,
+              public navCtrl: NavController,
+              public navParams: NavParams,
+              private nativeAudio: NativeAudio,
+              private jPush: JPush,
+              private jsms: JSMS) {
     this.nativeAudio.preloadSimple('uniqueId1', 'assets/media/braveShine_clip.mp3').then(function () {
       console.log('success')
     }, function (err) {
       console.log(err)
     });
+
+    this.jsms.init().then(function (result) {
+      // do something.
+      console.log("init success")
+    }, error => {
+      let code = error.code;
+      let desc = error.description
+    })
 
 
   }
@@ -115,5 +128,13 @@ export class TestingPage {
     localStorage.setItem("signalMessageItem_3", "true");
   }
 
-
+  sendJSMS() {
+    this.jsms.getSmsCode('18013550018', '1').then(function (result) {
+      // do something.
+      console.log("getSmsCode success")
+    }, error => {
+      let code = error.code;
+      let desc = error.description
+    })
+  }
 }

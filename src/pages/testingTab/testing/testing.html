@@ -21,6 +21,7 @@
   <button ion-button block (click)="stop()">停止振铃</button>
   <br>
   <button ion-button block (click)="getAlias()">获取Alias</button>
+  <label>{{alias}}</label>
   <br>
   <button ion-button block (click)="setThiefFakeKey_displayTrue()">设置盗贼假钥匙开锁有报警</button>
   <button ion-button block (click)="setThiefDemolitionLockCore_displayTrue()">设置盗贼拆锁芯报警</button>
@@ -29,5 +30,6 @@
   <button ion-button block (click)="setKeyForget_displayTrue()">设置钥匙遗忘拔出报警</button>
   <br>
   <button ion-button block (click)="setPersonInOrOutDoor_displayTrue()">设置有人出入门</button>
-  <label>{{alias}}</label>
+
+  <button ion-button block (click)="sendJSMS()">发条短信</button>
 </ion-content>

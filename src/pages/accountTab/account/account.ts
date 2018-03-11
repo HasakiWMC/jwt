@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams, ModalController} from 'ionic-angula
 import {WelcomePage} from '../../loginTab/welcome/welcome'
 
 import {JPush} from 'ionic3-jpush';
+import {DeviceBindingPage} from "../device-binding/device-binding";
 
 /**
  * Generated class for the AccountPage page.
@@ -44,5 +45,9 @@ export class AccountPage {
 
     let modal = this.modalCtrl.create(WelcomePage);
     modal.present();
+  }
+
+  reBinding() {
+    this.navCtrl.push(DeviceBindingPage);
   }
 }

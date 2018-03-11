@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Api} from '../../../providers/api/api';
 
@@ -16,9 +16,9 @@ import {Api} from '../../../providers/api/api';
 })
 export class DeviceBindingPage {
 
-  binding: { serial: string, password: string } = {
-    serial: '',
-    password: ''
+  binding: { id: string, pwd: string } = {
+    id: '',
+    pwd: ''
   };
 
   private bindingErrorString: string;
@@ -35,14 +35,15 @@ export class DeviceBindingPage {
 
   doBinding() {
     let option = {
-      "binding": this.binding
+      "id": this.binding.id,
+      "pwd": this.binding.pwd
     };
-    let seq = this.api.authPost('account/deviceBinding', option).share();
+    let seq = this.api.authPost('main/deviceBinding', option).share();
     seq.subscribe((resp: any) => {
       let res = resp.json();
       console.log(res);
       if (res['status'] == true) {
-        localStorage.setItem('serial', String(this.binding.serial));
+        localStorage.setItem('serial', String(this.binding.id));
         let toast = this.toastCtrl.create({
           message: this.bindingSuccessString,
           duration: 1000,
@@ -51,7 +52,7 @@ export class DeviceBindingPage {
         toast.present();
       } else {
         let toast = this.toastCtrl.create({
-          message: this.bindingErrorString,
+          message: res['msg'],
           duration: 1000,
           position: 'top'
         });
