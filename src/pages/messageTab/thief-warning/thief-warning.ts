@@ -93,6 +93,13 @@ export class ThiefWarningPage {
         this.convert2ThiefWarning(res['data']);
         console.log(res['data']);
       } else {
+        this.navCtrl.pop();
+        let toast = this.toastCtrl.create({
+          message: res['msg'],
+          duration: 1000,
+          position: 'top'
+        });
+        toast.present();
       }
     }, err => {
       console.error('ERROR', err);

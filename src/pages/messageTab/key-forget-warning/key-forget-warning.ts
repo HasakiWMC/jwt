@@ -51,6 +51,13 @@ export class KeyForgetWarningPage {
         console.log(this.keyForgetList);
         console.log(this.lastForgetTime);
       } else {
+        this.navCtrl.pop();
+        let toast = this.toastCtrl.create({
+          message: res['msg'],
+          duration: 1000,
+          position: 'top'
+        });
+        toast.present();
       }
     }, err => {
       console.error('ERROR', err);

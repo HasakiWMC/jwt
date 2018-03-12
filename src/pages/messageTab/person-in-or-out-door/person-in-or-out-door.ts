@@ -52,6 +52,13 @@ export class PersonInOrOutDoorPage {
         console.log(this.personInDoorItems);
         console.log(this.personOutDoorItems);
       } else {
+        this.navCtrl.pop();
+        let toast = this.toastCtrl.create({
+          message: res['msg'],
+          duration: 1000,
+          position: 'top'
+        });
+        toast.present();
       }
     }, err => {
       console.error('ERROR', err);
