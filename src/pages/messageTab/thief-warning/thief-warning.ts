@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {ThiefWarningHistoryPage} from '../thief-warning-history/thief-warning-history';
 import {ThiefFakeKeyPage} from '../thief-fake-key/thief-fake-key';
 import {ThiefDemolitionLockCorePage} from '../thief-demolition-lock-core/thief-demolition-lock-core'
 import {ThiefPryDoorPage} from '../thief-pry-door/thief-pry-door'
 import {Api} from '../../../providers/api/api';
+import {WelcomePage} from "../../loginTab/welcome/welcome";
 
 /**
  * Generated class for the ThiefWarningPage page.
@@ -37,7 +38,11 @@ export class ThiefWarningPage {
   };
   profilePic: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public api: Api,
+              public toastCtrl: ToastController,
+              public modalCtrl: ModalController) {
     this.profilePic = "assets/img/warn.png";
 
     this.getWarningLog();
@@ -91,6 +96,16 @@ export class ThiefWarningPage {
       }
     }, err => {
       console.error('ERROR', err);
+      if (err['status'] == 401) {
+        let modal = this.modalCtrl.create(WelcomePage);
+        modal.present();
+        let toast = this.toastCtrl.create({
+          message: '登录态无效，请重新登录',
+          duration: 1000,
+          position: 'top'
+        });
+        toast.present();
+      }
     });
     return seq;
   }

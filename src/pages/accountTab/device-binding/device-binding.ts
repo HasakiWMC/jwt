@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Api} from '../../../providers/api/api';
 import {MainPage} from "../../pages";
+import {WelcomePage} from "../../loginTab/welcome/welcome";
 
 /**
  * Generated class for the DeviceBindingPage page.
@@ -65,6 +66,17 @@ export class DeviceBindingPage {
       }
     }, err => {
       console.error('ERROR', err);
+      if (err['status'] == 401) {
+        let modal = this.modalCtrl.create(WelcomePage);
+        modal.present();
+        let toast = this.toastCtrl.create({
+          message: '登录态无效，请重新登录',
+          duration: 1000,
+          position: 'top'
+        });
+        toast.present();
+      }
+
     });
     let modal = this.modalCtrl.create(MainPage);
     modal.present();

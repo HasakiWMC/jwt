@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
-import {IonicPage, NavController, NavParams, ToastController} from "ionic-angular";
+import {IonicPage, ModalController, NavController, NavParams, ToastController} from "ionic-angular";
 import {Api} from '../../../providers/api/api';
+import {WelcomePage} from "../../loginTab/welcome/welcome";
 /**
  * Generated class for the InOrOutDisplayFunctionSelectionPage page.
  *
@@ -17,7 +18,11 @@ export class InOrOutDisplayFunctionSelectionPage {
 
   display: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public api: Api) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public toastCtrl: ToastController,
+              public api: Api,
+              public modalCtrl: ModalController) {
     if (localStorage.getItem('display') == null) {
       this.display = false;
     } else {
@@ -61,6 +66,16 @@ export class InOrOutDisplayFunctionSelectionPage {
       }
     }, err => {
       console.error('ERROR', err);
+      if (err['status'] == 401) {
+        let modal = this.modalCtrl.create(WelcomePage);
+        modal.present();
+        let toast = this.toastCtrl.create({
+          message: '登录态无效，请重新登录',
+          duration: 1000,
+          position: 'top'
+        });
+        toast.present();
+      }
     });
     return seq;
   }

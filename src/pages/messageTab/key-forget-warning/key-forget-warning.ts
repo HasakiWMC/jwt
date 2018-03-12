@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {KeyForgetWarningHistoryPage} from '../key-forget-warning-history/key-forget-warning-history';
 import {Api} from '../../../providers/api/api';
+import {WelcomePage} from "../../loginTab/welcome/welcome";
 
 /**
  * Generated class for the KeyForgetWarningPage page.
@@ -19,7 +20,11 @@ export class KeyForgetWarningPage {
   lastForgetTime: string;
   keyForgetList: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public api: Api,
+              public toastCtrl: ToastController,
+              public modalCtrl: ModalController) {
     this.getKeyForgetLog();
   }
 
@@ -49,6 +54,16 @@ export class KeyForgetWarningPage {
       }
     }, err => {
       console.error('ERROR', err);
+      if (err['status'] == 401) {
+        let modal = this.modalCtrl.create(WelcomePage);
+        modal.present();
+        let toast = this.toastCtrl.create({
+          message: '登录态无效，请重新登录',
+          duration: 1000,
+          position: 'top'
+        });
+        toast.present();
+      }
     });
     return seq;
   }
