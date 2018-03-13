@@ -8,12 +8,18 @@
 
 
 <ion-content>
-  <form (submit)="doSignup()">
+  <form>
     <ion-list>
 
       <ion-item>
         <ion-label fixed>{{ 'PHONE' | translate }}</ion-label>
         <ion-input type="text" [(ngModel)]="account.phone" name="phone"></ion-input>
+      </ion-item>
+
+      <button  ion-button (click)="getVerificationCode()" style="float: right;padding: 0.5em 1em 0.5em 1em" [disabled]="disableSendVerificationCode" id="text_code">获取验证码</button >
+      <ion-item>
+        <ion-label fixed>验证码</ion-label>
+        <ion-input type="text"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -27,7 +33,7 @@
       </ion-item>
 
       <div padding>
-        <button ion-button color="primary" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
+        <button ion-button (click)="doSignup()"  color="primary" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
       </div>
 
     </ion-list>

@@ -24,6 +24,10 @@ export class SignupPage {
     passwordAgain: ''
   };
 
+  disableSendVerificationCode: boolean;
+  disableTime: any;
+  intervalTime: number;
+
   // Our translated text strings
   private signupErrorString: string;
 
@@ -34,7 +38,9 @@ export class SignupPage {
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
-    })
+    });
+    this.disableSendVerificationCode = false;
+    this.intervalTime = 15;
   }
 
   doSignup() {
@@ -64,7 +70,7 @@ export class SignupPage {
         this.user.login(newAccount).subscribe((resp) => {
           let res = resp.json();
           if (res['access_token']) {
-            localStorage.setItem('token', res['access_token'])
+            localStorage.setItem('token', res['access_token']);
             localStorage.setItem('username', this.account.phone)
           }
 
@@ -136,6 +142,60 @@ export class SignupPage {
     } else {
       return true;
     }
+  }
+
+  getVerificationCode() {
+    // this.disableSendVerificationCode = true;
+    // document.getElementById("text_code").innerHTML = '哈哈哈哈';
+    // let time = new Date();
+    //
+    // console.log("time = %s", time.getTime());
+    // setTimeout(function () {
+    //   let time2 = new Date();
+    //   console.log("time2 = %s", time2.getTime());
+    //   console.log("minus = %s", time2.getTime() - Number(time.getTime().toString()))
+    // }, 1000);
+
+    let touchTime = new Date();
+    localStorage.setItem('touchTime', touchTime.getTime().toString());
+    this.disableSendVerificationCode = true;
+    document.getElementById("text_code").innerHTML = (this.intervalTime) + 's';
+    this.displayIsDisableStatus();
+  }
+
+  displayIsDisableStatus() {
+    //该方法重复执行
+    this.disableTime = setInterval(() => {
+      let curTime = new Date();
+      let delta = curTime.getTime() - Number(localStorage.getItem('touchTime'));
+      console.log(Math.round(delta / 1000));
+      if (Math.floor(delta / 1000) < this.intervalTime) {
+        document.getElementById("text_code").innerHTML = (this.intervalTime - Math.floor(delta / 1000)) + 's';
+      } else {
+        this.disableSendVerificationCode = false;
+        clearInterval(this.disableTime);
+        localStorage.removeItem('touchTime');
+        document.getElementById("text_code").innerHTML = '获取验证码';
+      }
+    }, 1000);
+  }
+
+  ionViewWillEnter() {
+    let lastTouchTime = localStorage.getItem('touchTime');
+    if (lastTouchTime) {
+      let curTime = new Date();
+      let delta = curTime.getTime() - Number(lastTouchTime);
+      console.log("has lastTouchTime = %s", delta);
+      if (Math.floor(delta / 1000) < this.intervalTime) {
+        this.disableSendVerificationCode = true;
+        document.getElementById("text_code").innerHTML = (this.intervalTime - Math.floor(delta / 1000)) + 's';
+        this.displayIsDisableStatus();
+      }
+    }
+  }
+
+  ionViewWillLeave() {
+    clearInterval(this.disableTime);
   }
 
 }
