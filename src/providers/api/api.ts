@@ -8,8 +8,8 @@ import { Http, RequestOptions } from '@angular/http';
  */
 @Injectable()
 export class Api {
-  // url: string = 'http://localhost:5000';
-  url: string = 'http://47.94.223.220';
+  url: string = 'http://127.0.0.1:5000';
+  // url: string = 'http://47.94.223.220';
 
   constructor(public http: HttpClient, public authHttp: AuthHttp) {
   }

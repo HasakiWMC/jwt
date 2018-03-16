@@ -17,16 +17,17 @@ export class SignupPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { phone: string, email: string, password: string, passwordAgain: string } = {
+  account: { phone: string, captcha: string, password: string, passwordAgain: string } = {
     phone: '',
-    email: '',
+    captcha: '',
     password: '',
     passwordAgain: ''
   };
 
-  disableSendVerificationCode: boolean;
+  disableSendCaptcha: boolean;
   disableTime: any;
   intervalTime: number;
+  getCaptchaStatus: string;
 
   // Our translated text strings
   private signupErrorString: string;
@@ -34,13 +35,15 @@ export class SignupPage {
   constructor(public navCtrl: NavController,
               public user: User,
               public toastCtrl: ToastController,
-              public translateService: TranslateService) {
+              public translateService: TranslateService,
+              public api: Api) {
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
     });
-    this.disableSendVerificationCode = false;
+    this.disableSendCaptcha = false;
     this.intervalTime = 15;
+    this.getCaptchaStatus = "获取验证码"
   }
 
   doSignup() {
@@ -57,8 +60,8 @@ export class SignupPage {
         // console.log(status);
 
         var res = resp.json();
-        var msg = res['msg']
-        var status = res['status']
+        var msg = res['msg'];
+        var status = res['status'];
         console.log(status);
       }
       if (status == true) {
@@ -121,7 +124,7 @@ export class SignupPage {
     let isCorrect = true;
     let phonePattern = /^(13|14|15|17|18|19)[0-9]{9}$/.test(this.account.phone);
     console.log(phonePattern);
-    if (this.account.phone == "" || this.account.password == "" || this.account.passwordAgain == "") {
+    if (this.account.phone == "" || this.account.captcha == "" || this.account.password == "" || this.account.passwordAgain == "") {
       this.signupErrorString = "输入不能为空";
       isCorrect = false;
     } else if (!phonePattern) {
@@ -144,23 +147,47 @@ export class SignupPage {
     }
   }
 
-  getVerificationCode() {
-    // this.disableSendVerificationCode = true;
-    // document.getElementById("text_code").innerHTML = '哈哈哈哈';
-    // let time = new Date();
-    //
-    // console.log("time = %s", time.getTime());
-    // setTimeout(function () {
-    //   let time2 = new Date();
-    //   console.log("time2 = %s", time2.getTime());
-    //   console.log("minus = %s", time2.getTime() - Number(time.getTime().toString()))
-    // }, 1000);
-
+  getCaptcha() {
+    let phonePattern = /^(13|14|15|17|18|19)[0-9]{9}$/.test(this.account.phone);
+    if (!phonePattern) {
+      this.signupErrorString = "手机号码不符合规则";
+      let toast = this.toastCtrl.create({
+        message: this.signupErrorString,
+        duration: 1000,
+        position: 'top'
+      });
+      toast.present();
+      return
+    }
     let touchTime = new Date();
     localStorage.setItem('touchTime', touchTime.getTime().toString());
-    this.disableSendVerificationCode = true;
-    document.getElementById("text_code").innerHTML = (this.intervalTime) + 's';
-    this.displayIsDisableStatus();
+    this.disableSendCaptcha = true;
+    this.getCaptchaStatus = (this.intervalTime) + 's';
+
+    //发送验证码
+    let option = {
+      phone: this.account.phone
+    };
+    let seq = this.api.authPost('captcha/register', option).share();
+
+    seq.subscribe((resp: any) => {
+      let res = resp.json();
+      if (res.status == false) {
+        let toast = this.toastCtrl.create({
+          message: '发送短信失败',
+          duration: 2000,
+          position: 'top'
+        });
+        toast.present();
+
+        this.change2canSend();
+      } else {
+        this.displayIsDisableStatus();
+      }
+    }, err => {
+      this.displayIsDisableStatus();
+      console.error('ERROR', err);
+    });
   }
 
   displayIsDisableStatus() {
@@ -170,12 +197,9 @@ export class SignupPage {
       let delta = curTime.getTime() - Number(localStorage.getItem('touchTime'));
       console.log(Math.round(delta / 1000));
       if (Math.floor(delta / 1000) < this.intervalTime) {
-        document.getElementById("text_code").innerHTML = (this.intervalTime - Math.floor(delta / 1000)) + 's';
+        this.getCaptchaStatus = (this.intervalTime - Math.floor(delta / 1000)) + 's';
       } else {
-        this.disableSendVerificationCode = false;
-        clearInterval(this.disableTime);
-        localStorage.removeItem('touchTime');
-        document.getElementById("text_code").innerHTML = '获取验证码';
+        this.change2canSend();
       }
     }, 1000);
   }
@@ -187,8 +211,8 @@ export class SignupPage {
       let delta = curTime.getTime() - Number(lastTouchTime);
       console.log("has lastTouchTime = %s", delta);
       if (Math.floor(delta / 1000) < this.intervalTime) {
-        this.disableSendVerificationCode = true;
-        document.getElementById("text_code").innerHTML = (this.intervalTime - Math.floor(delta / 1000)) + 's';
+        this.disableSendCaptcha = true;
+        this.getCaptchaStatus = (this.intervalTime - Math.floor(delta / 1000)) + 's';
         this.displayIsDisableStatus();
       }
     }

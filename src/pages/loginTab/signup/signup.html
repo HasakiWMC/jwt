@@ -16,10 +16,10 @@
         <ion-input type="text" [(ngModel)]="account.phone" name="phone"></ion-input>
       </ion-item>
 
-      <button  ion-button (click)="getVerificationCode()" style="float: right;padding: 0.5em 1em 0.5em 1em" [disabled]="disableSendVerificationCode" id="text_code">获取验证码</button >
+      <button ion-button (click)="getCaptcha()" style="float: right;padding: 0.5em 1em 0.5em 1em" [disabled]="disableSendCaptcha" [innerHTML]="getCaptchaStatus"></button >
       <ion-item>
         <ion-label fixed>验证码</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="account.captcha" name="captcha"></ion-input>
       </ion-item>
 
       <ion-item>
