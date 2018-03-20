@@ -7,6 +7,7 @@ import {MainPage} from '../../pages';
 import {WelcomePage} from '../welcome/welcome';
 import {LoginPage} from '../login/login';
 import {DeviceBindingPage} from '../../accountTab/device-binding/device-binding';
+import {Api} from "../../../providers/api/api";
 
 @IonicPage()
 @Component({
@@ -202,6 +203,13 @@ export class SignupPage {
         this.change2canSend();
       }
     }, 1000);
+  }
+
+  private change2canSend() {
+    this.disableSendCaptcha = false;
+    clearInterval(this.disableTime);
+    localStorage.removeItem('touchTime');
+    this.getCaptchaStatus = '获取验证码';
   }
 
   ionViewWillEnter() {
