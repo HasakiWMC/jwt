@@ -26,6 +26,8 @@ import {WelcomePage} from '../pages/loginTab/welcome/welcome';
 import {WelcomePageModule} from '../pages/loginTab/welcome/welcome.module';
 import {LoginPage} from '../pages/loginTab/login/login';
 import {LoginPageModule} from '../pages/loginTab/login/login.module';
+import {ForgetPwdPage} from '../pages/loginTab/forget-pwd/forget-pwd';
+import {ForgetPwdPageModule} from '../pages/loginTab/forget-pwd/forget-pwd.module';
 
 import {ThiefWarningPage} from '../pages/messageTab/thief-warning/thief-warning';
 import {ThiefWarningHistoryPage} from '../pages/messageTab/thief-warning-history/thief-warning-history';
@@ -102,6 +104,7 @@ export function getAuthHttp(http) {
     // AuthModule,
     WelcomePageModule,
     LoginPageModule,
+    ForgetPwdPageModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -130,6 +133,7 @@ export function getAuthHttp(http) {
     NetworkConnectionDetectionPage,
     WelcomePage,
     LoginPage,
+    ForgetPwdPage,
     MessagingMethodSettingsPage,
     DeviceBindingPage
   ],

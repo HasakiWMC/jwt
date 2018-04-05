@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
+import {ForgetPwdPage} from "../forget-pwd/forget-pwd";
 
 /**
  * The Welcome Page is a splash page that quickly describes the app,
@@ -26,6 +27,6 @@ export class WelcomePage {
   }
 
   forgetPwd() {
-
+    this.navCtrl.push(ForgetPwdPage);
   }
 }

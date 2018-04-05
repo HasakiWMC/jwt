@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>忘记密码</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form>
+    <ion-list>
+
+      <ion-item>
+        <ion-label fixed>{{ 'PHONE' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="account.phone" name="phone"></ion-input>
+      </ion-item>
+
+      <button ion-button (click)="getCaptcha()" style="float: right;padding: 0.5em 1em 0.5em 1em" [disabled]="disableSendCaptcha" [innerHTML]="getCaptchaStatus"></button >
+      <ion-item>
+        <ion-label fixed>验证码</ion-label>
+        <ion-input type="text" [(ngModel)]="account.captcha" name="captcha"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
+        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>{{ 'PASSWORD_AGAIN' | translate }}</ion-label>
+        <ion-input type="password" [(ngModel)]="account.passwordAgain" name="passwordAgain"></ion-input>
+      </ion-item>
+
+      <div padding>
+        <button ion-button (click)="doForgetPwd()"  color="primary" block>重置密码</button>
+      </div>
+
+    </ion-list>
+  </form>
+</ion-content>

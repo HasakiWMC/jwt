@@ -9,7 +9,9 @@ import { Http, RequestOptions } from '@angular/http';
 @Injectable()
 export class Api {
   url: string = 'http://127.0.0.1:5000';
+  // url: string = 'http://192.168.31.196:5000';
   // url: string = 'http://47.94.223.220';
+
 
   constructor(public http: HttpClient, public authHttp: AuthHttp) {
   }
