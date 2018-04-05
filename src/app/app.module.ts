@@ -45,6 +45,7 @@ import {AdditionalBeepSettingsPage} from '../pages/deviceTab/additional-beep-set
 import {NetworkConnectionDetectionPage} from '../pages/deviceTab/network-connection-detection/network-connection-detection'
 import {MessagingMethodSettingsPage} from '../pages/deviceTab/messaging-method-settings/messaging-method-settings'
 import {DeviceBindingPage} from '../pages/accountTab/device-binding/device-binding'
+import {ChangePwdPage} from '../pages/accountTab/change-pwd/change-pwd'
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -95,7 +96,8 @@ export function getAuthHttp(http) {
     AdditionalBeepSettingsPage,
     NetworkConnectionDetectionPage,
     MessagingMethodSettingsPage,
-    DeviceBindingPage
+    DeviceBindingPage,
+    ChangePwdPage
   ],
   imports: [
     BrowserModule,
@@ -135,7 +137,8 @@ export function getAuthHttp(http) {
     LoginPage,
     ForgetPwdPage,
     MessagingMethodSettingsPage,
-    DeviceBindingPage
+    DeviceBindingPage,
+    ChangePwdPage
   ],
   providers: [
     Api,

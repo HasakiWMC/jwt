@@ -113,7 +113,7 @@ export class SignupPage {
 
       // Unable to sign up
       let toast = this.toastCtrl.create({
-        message: this.signupErrorString,
+        message: "注册失败",
         duration: 3000,
         position: 'top'
       });

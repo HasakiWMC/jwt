@@ -74,7 +74,7 @@ export class ForgetPwdPage {
 
       // Unable to sign up
       let toast = this.toastCtrl.create({
-        message: this.signupErrorString,
+        message: "重置密码失败",
         duration: 3000,
         position: 'top'
       });

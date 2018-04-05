@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>修改密码</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form (submit)="doChange()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label fixed>旧密码</ion-label>
+        <ion-input type="password" [(ngModel)]="account.old_password" name="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>新密码</ion-label>
+        <ion-input type="password" [(ngModel)]="account.new_password" name="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>确认密码</ion-label>
+        <ion-input type="password" [(ngModel)]="account.passwordAgain" name="password"></ion-input>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="primary" block>修改密码</button>
+      </div>
+
+    </ion-list>
+  </form>
+</ion-content>

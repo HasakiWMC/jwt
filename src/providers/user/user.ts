@@ -94,21 +94,29 @@ export class User {
   }
 
   forgetPwd(accountInfo: any) {
-    // let seq = this.api.post('signup', accountInfo).share();
-
-    // seq.subscribe((res: any) => {
-    //   // If the API returned a successful response, mark the user as logged in
-    //   if (res.status == 'success') {
-    //     this._loggedIn(res);
-    //   }
-    // }, err => {
-    //   console.error('ERROR', err);
-    // });
 
     let myHeader = new Headers();
     myHeader.append('Content-Type', 'application/json');
 
     let seq = this.api.authPost('forgetPwd', accountInfo, { headers: myHeader }).share();
+
+    seq.subscribe((res: any) => {
+      this.thing = res
+    }, err => {
+      console.log(err)
+    }, () => {
+      console.log('Request Complete')
+    });
+
+    return seq;
+  }
+
+  changePwd(accountInfo: any) {
+
+    let myHeader = new Headers();
+    myHeader.append('Content-Type', 'application/json');
+
+    let seq = this.api.authPost('changePwd', accountInfo, { headers: myHeader }).share();
 
     seq.subscribe((res: any) => {
       this.thing = res

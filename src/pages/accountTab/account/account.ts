@@ -4,6 +4,7 @@ import {WelcomePage} from '../../loginTab/welcome/welcome'
 
 import {JPush} from 'ionic3-jpush';
 import {DeviceBindingPage} from "../device-binding/device-binding";
+import {ChangePwdPage} from "../change-pwd/change-pwd";
 
 /**
  * Generated class for the AccountPage page.
@@ -49,5 +50,9 @@ export class AccountPage {
 
   reBinding() {
     this.navCtrl.push(DeviceBindingPage);
+  }
+
+  changePwd() {
+    this.navCtrl.push(ChangePwdPage);
   }
 }
